@@ -1,4 +1,8 @@
-require "global_sign/version"
+require 'global_sign/version'
+require 'global_sign/client'
+require 'global_sign/request_xml_builder'
+require 'global_sign/request'
+require 'global_sign/response'
 
 module GlobalSign
   class << self
