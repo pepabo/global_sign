@@ -1,8 +1,12 @@
+require 'active_support/core_ext/hash/conversions'
+
 require 'global_sign/version'
 require 'global_sign/client'
 require 'global_sign/request_xml_builder'
 require 'global_sign/request'
 require 'global_sign/response'
+
+require 'global_sign/url_verification'
 
 module GlobalSign
   class << self
