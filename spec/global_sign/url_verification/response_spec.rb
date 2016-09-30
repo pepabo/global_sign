@@ -29,7 +29,7 @@ describe GlobalSign::UrlVerification::Response do
       contract_information.first_name = 'Pepabo'
       contract_information.last_name = 'Taro'
       contract_information.phone_number = '090-1234-5678'
-      contract_information.email = 'test@example.com'
+      contract_information.email = 'pepabo.taro@example.com'
     end
 
     VCR.use_cassette('url_verification/' + cassette_title) do

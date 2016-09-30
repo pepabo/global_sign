@@ -26,7 +26,7 @@ describe GlobalSign::Request do
   end
 
   describe '#auth_token_params' do
-    let(:user_name) { 'PAR12345_hoge' }
+    let(:user_name) { 'PAR12345_taro' }
     let(:password) { 'password' }
 
     before do

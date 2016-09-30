@@ -45,7 +45,7 @@ http_interactions:
                   <FirstName>Pepabo</FirstName>
                   <LastName>Taro</LastName>
                   <Phone>090-1234-5678</Phone>
-                  <Email>test@example.com</Email>
+                  <Email>pepabo.taro@example.com</Email>
                 </ContactInfo>
               </Request>
             </ns2:URLVerification>

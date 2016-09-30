@@ -7,21 +7,21 @@ describe GlobalSign do
 
   describe '.configure' do
     before do
-      GlobalSign.configure { |config| config.user_name = 'PAR12345_hoge' }
+      GlobalSign.configure { |config| config.user_name = 'PAR12345_taro' }
     end
 
     it 'proxies to GlobalSign configuration' do
-      expect(GlobalSign.configuration.user_name).to eq('PAR12345_hoge')
+      expect(GlobalSign.configuration.user_name).to eq('PAR12345_taro')
     end
   end
 
   describe '.contract' do
     before do
-      GlobalSign.contract { |contract_information| contract_information.first_name = 'Yamada' }
+      GlobalSign.contract { |contract_information| contract_information.first_name = 'Pepabo' }
     end
 
     it 'proxies to GlobalSign contract information' do
-      expect(GlobalSign.contract_information.first_name).to eq('Yamada')
+      expect(GlobalSign.contract_information.first_name).to eq('Pepabo')
     end
   end
 end
