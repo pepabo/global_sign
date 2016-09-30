@@ -1,11 +1,20 @@
 require 'spec_helper'
 
 describe GlobalSign::Request do
+  let(:contract) do
+    GlobalSign::Contract.new(
+      first_name:   'Pepabo',
+      last_name:    'Taro',
+      phone_number: '090-1234-5678',
+      email:        'pepabo.taro@example.com',
+    )
+  end
+
   let(:request) do
     GlobalSign::UrlVerification::Request.new(
       order_kind:    'new',
       csr:           'xxxxx',
-      contract_info: GlobalSign.contract_information,
+      contract_info: contract,
     )
   end
 

@@ -2,7 +2,14 @@ require 'spec_helper'
 
 describe GlobalSign::UrlVerification::Response do
   let(:client) { GlobalSign::Client.new }
-  let(:contract_information) { GlobalSign.contract_information }
+  let(:contract) do
+    GlobalSign::Contract.new(
+      first_name:   'Pepabo',
+      last_name:    'Taro',
+      phone_number: '090-1234-5678',
+      email:        'pepabo.taro@example.com',
+    )
+  end
 
   let(:csr) do
     <<-EOS
@@ -27,13 +34,6 @@ describe GlobalSign::UrlVerification::Response do
   end
 
   before do
-    GlobalSign.contract do |contract_information|
-      contract_information.first_name   = 'Pepabo'
-      contract_information.last_name    = 'Taro'
-      contract_information.phone_number = '090-1234-5678'
-      contract_information.email        = 'pepabo.taro@example.com'
-    end
-
     VCR.use_cassette('url_verification/' + cassette_title) do
       @response = client.process(request)
     end
@@ -46,7 +46,7 @@ describe GlobalSign::UrlVerification::Response do
       GlobalSign::UrlVerification::Request.new(
         order_kind:    'new',
         csr:           csr,
-        contract_info: contract_information,
+        contract_info: contract,
       )
     end
 
@@ -71,7 +71,7 @@ describe GlobalSign::UrlVerification::Response do
       GlobalSign::UrlVerification::Request.new(
         order_kind:    'invalid_kind',
         csr:           csr,
-        contract_info: contract_information,
+        contract_info: contract,
       )
     end
 

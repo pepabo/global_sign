@@ -17,7 +17,12 @@ describe GlobalSign do
 
   describe '.contract' do
     before do
-      GlobalSign.contract { |contract_information| contract_information.first_name = 'Pepabo' }
+      GlobalSign.contract do |contract_information|
+        contract_information.first_name   = 'Pepabo'
+        contract_information.last_name    = 'Taro'
+        contract_information.phone_number = '090-1234-5678'
+        contract_information.email        = 'pepabo.taro@example.com'
+      end
     end
 
     it 'proxies to GlobalSign contract information' do

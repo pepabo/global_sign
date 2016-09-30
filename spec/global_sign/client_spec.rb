@@ -28,7 +28,6 @@ describe GlobalSign::Client do
         GlobalSign::UrlVerification::Request.new(
           order_kind:    'new',
           csr:           'xxxxx',
-          contract_info: GlobalSign.contract_information,
         )
       end
 

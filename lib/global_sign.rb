@@ -18,7 +18,8 @@ module GlobalSign
     end
 
     def contract
-      @contract_information ||= ContractInformation.new
+      # initialize with nil, because the initialize method requires keyword args
+      @contract_information ||= Contract.new(first_name: nil, last_name: nil, phone_number: nil, email: nil)
       yield @contract_information if block_given?
     end
   end
@@ -27,7 +28,14 @@ module GlobalSign
     attr_accessor :user_name, :password, :endpoint
   end
 
-  class ContractInformation
+  class Contract
     attr_accessor :first_name, :last_name, :phone_number, :email
+
+    def initialize(first_name:, last_name:, phone_number:, email:)
+      @first_name   = first_name
+      @last_name    = last_name
+      @phone_number = phone_number
+      @email        = email
+    end
   end
 end

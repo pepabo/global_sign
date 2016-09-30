@@ -1,10 +1,10 @@
 module GlobalSign
   module UrlVerification
     class Request < GlobalSign::Request
-      def initialize(order_kind:, csr:, contract_info:)
+      def initialize(order_kind:, csr:, contract_info: nil)
         @order_kind    = order_kind
         @csr           = csr
-        @contract_info = contract_info
+        @contract_info = contract_info || GlobalSign.contract_information
       end
 
       def path
