@@ -18,7 +18,7 @@ module GlobalSign
       yield @configuration if block_given?
     end
 
-    def contract
+    def set_contract
       # initialize with nil, because the initialize method requires keyword args
       @contract_information ||= Contract.new(first_name: nil, last_name: nil, phone_number: nil, email: nil)
       yield @contract_information if block_given?
