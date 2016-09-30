@@ -1,8 +1,6 @@
 # GlobalSign
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/global_sign`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A Ruby interface to the GlobalSign API.
 
 ## Installation
 
@@ -14,23 +12,68 @@ gem 'global_sign'
 
 And then execute:
 
-    $ bundle
+```
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install global_sign
+```
+$ gem install global_sign
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+### Settings
 
-## Development
+An example Rails initializer would look something like this:
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```ruby
+GlobalSign.configure do |configuration|
+  configuration.user_name = 'PAR12345_taro'
+  configuration.password  = 'password'
+  configuration.endpoint  = 'https://test-gcc.globalsign.com/kb/ws/v1'
+end
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+GlobalSign.contract do |contract_information|
+  contract_information.first_name   = 'Pepabo'
+  contract_information.last_name    = 'Taro'
+  contract_information.phone_number = '090-1234-5678'
+  contract_information.email        = 'pepabo.taro@example.com'
+end
+```
+
+### URL Verification
+
+```ruby
+require 'global_sign'
+
+client = GlobalSign::Client.new
+
+# Prepare CSR beforehand
+csr = '-----BEGIN CERTIFICATE REQUEST-----
+...
+-----END CERTIFICATE REQUEST-----'
+
+request = GlobalSign::UrlVerification::Request.new(
+  order_kind:    'new',   # If you request a new certificate
+  csr:           csr,
+  contract_info: GlobalSign.contract_information,
+)
+
+response = client.process(request)
+
+if response.success?
+  puts "Successfully URL Verification"
+  puts response.params # => { meta_tag: "xxxxx", ... }
+else
+  raise StandardError, "#{response.error_code}: #{response.error_message}"
+end
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/global_sign.
-
+1. Create your feature branch (git checkout -b my-new-feature)
+2. Commit your changes (git commit -am 'Add some feature')
+3. Push to the branch (git push origin my-new-feature)
+4. Create a new Pull Request
