@@ -7,7 +7,7 @@ describe GlobalSign do
 
   describe '.configure' do
     before do
-      GlobalSign.configure { |config| config.user_name = 'PAR12345_taro' }
+      GlobalSign.configure { |configuration| configuration.user_name = 'PAR12345_taro' }
     end
 
     it 'proxies to GlobalSign configuration' do

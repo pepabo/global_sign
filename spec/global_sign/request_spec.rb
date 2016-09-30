@@ -30,9 +30,9 @@ describe GlobalSign::Request do
     let(:password) { 'password' }
 
     before do
-      GlobalSign.configure do |config|
-        config.user_name = user_name
-        config.password  = password
+      GlobalSign.configure do |configuration|
+        configuration.user_name = user_name
+        configuration.password  = password
       end
     end
 
