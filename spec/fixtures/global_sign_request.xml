@@ -1,0 +1,23 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns2="https://system.globalsign.com/kb/ws/v1/">
+  <soap:Body>
+    <ns2:URLVerification>
+      <Request>
+        <OrderRequestParameter>
+          <ProductCode>DV_LOW_URL</ProductCode>
+          <OrderKind>new</OrderKind>
+          <Licenses type="integer">1</Licenses>
+          <ValidityPeriod>
+            <Months type="integer">1</Months>
+          </ValidityPeriod>
+          <CSR>xxxxx</CSR>
+        </OrderRequestParameter>
+        <ContactInfo>
+          <FirstName>Pepabo</FirstName>
+          <LastName>Taro</LastName>
+          <Phone>090-1234-5678</Phone>
+          <Email>test@example.com</Email>
+        </ContactInfo>
+      </Request>
+    </ns2:URLVerification>
+  </soap:Body>
+</soap:Envelope>
