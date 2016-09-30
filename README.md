@@ -34,13 +34,6 @@ GlobalSign.configure do |configuration|
   configuration.password  = 'password'
   configuration.endpoint  = 'https://test-gcc.globalsign.com/kb/ws/v1'
 end
-
-GlobalSign.contract do |contract_information|
-  contract_information.first_name   = 'Pepabo'
-  contract_information.last_name    = 'Taro'
-  contract_information.phone_number = '090-1234-5678'
-  contract_information.email        = 'pepabo.taro@example.com'
-end
 ```
 
 ### URL Verification
@@ -57,10 +50,17 @@ csr = <<-EOS
 -----END CERTIFICATE REQUEST-----
 EOS
 
+contract = GlobalSign::Contract.new(
+  first_name:   'Pepabo',
+  last_name:    'Taro',
+  phone_number: '090-1234-5678',
+  email:        'pepabo.taro@example.com',
+)
+
 request = GlobalSign::UrlVerification::Request.new(
   order_kind:    'new',   # If you request a new certificate
   csr:           csr,
-  contract_info: GlobalSign.contract_information,
+  contract_info: contract,
 )
 
 response = client.process(request)
@@ -71,6 +71,23 @@ if response.success?
 else
   raise StandardError, "#{response.error_code}: #{response.error_message}"
 end
+```
+
+To use contract on Rails initializer, do it like this:
+
+```ruby
+GlobalSign.set_contract do |contract|
+  contract.first_name   = 'Pepabo'
+  contract.last_name    = 'Taro'
+  contract.phone_number = '090-1234-5678'
+  contract.email        = 'pepabo.taro@example.com'
+end
+
+# Not need to give argument 'contract_info'
+request = GlobalSign::UrlVerification::Request.new(
+  order_kind: 'new',
+  csr:        csr,
+)
 ```
 
 ## Contributing
