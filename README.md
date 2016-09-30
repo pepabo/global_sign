@@ -24,7 +24,7 @@ $ gem install global_sign
 
 ## Usage
 
-### Settings
+### Configuration
 
 An example Rails initializer would look something like this:
 
