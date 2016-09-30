@@ -2,6 +2,7 @@ require 'active_support/core_ext/hash/conversions'
 
 require 'global_sign/version'
 require 'global_sign/client'
+require 'global_sign/contract'
 require 'global_sign/request_xml_builder'
 require 'global_sign/request'
 require 'global_sign/response'
@@ -26,16 +27,5 @@ module GlobalSign
 
   class Configuration
     attr_accessor :user_name, :password, :endpoint
-  end
-
-  class Contract
-    attr_accessor :first_name, :last_name, :phone_number, :email
-
-    def initialize(first_name:, last_name:, phone_number:, email:)
-      @first_name   = first_name
-      @last_name    = last_name
-      @phone_number = phone_number
-      @email        = email
-    end
   end
 end
