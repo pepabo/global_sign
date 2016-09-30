@@ -26,10 +26,10 @@ describe GlobalSign::UrlVerification::Response do
 
   before do
     GlobalSign.contract do |contract_information|
-      contract_information.first_name = 'Pepabo'
-      contract_information.last_name = 'Taro'
+      contract_information.first_name   = 'Pepabo'
+      contract_information.last_name    = 'Taro'
       contract_information.phone_number = '090-1234-5678'
-      contract_information.email = 'pepabo.taro@example.com'
+      contract_information.email        = 'pepabo.taro@example.com'
     end
 
     VCR.use_cassette('url_verification/' + cassette_title) do
@@ -42,8 +42,8 @@ describe GlobalSign::UrlVerification::Response do
 
     let(:request) do
       GlobalSign::UrlVerification::Request.new(
-        order_kind: 'new',
-        csr: csr,
+        order_kind:    'new',
+        csr:           csr,
         contract_info: contract_information,
       )
     end
@@ -67,8 +67,8 @@ describe GlobalSign::UrlVerification::Response do
 
     let(:request) do
       GlobalSign::UrlVerification::Request.new(
-        order_kind: 'invalid_kind',
-        csr: csr,
+        order_kind:    'invalid_kind',
+        csr:           csr,
         contract_info: contract_information,
       )
     end

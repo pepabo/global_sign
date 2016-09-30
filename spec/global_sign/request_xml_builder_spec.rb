@@ -4,8 +4,8 @@ describe GlobalSign::RequestXmlBuilder do
   describe '.build_xml' do
     let(:request) do
       GlobalSign::UrlVerification::Request.new(
-        order_kind: 'new',
-        csr: 'xxxxx',
+        order_kind:    'new',
+        csr:           'xxxxx',
         contract_info: GlobalSign.contract_information,
       )
     end
@@ -16,10 +16,10 @@ describe GlobalSign::RequestXmlBuilder do
 
     before do
       GlobalSign.contract do |contract_information|
-        contract_information.first_name = 'Pepabo'
-        contract_information.last_name = 'Taro'
+        contract_information.first_name   = 'Pepabo'
+        contract_information.last_name    = 'Taro'
         contract_information.phone_number = '090-1234-5678'
-        contract_information.email = 'pepabo.taro@example.com'
+        contract_information.email        = 'pepabo.taro@example.com'
       end
     end
 

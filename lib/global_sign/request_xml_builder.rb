@@ -3,7 +3,7 @@ require 'nokogiri'
 module GlobalSign
   class RequestXmlBuilder
     module XmlNamespace
-      BODY = 'http://schemas.xmlsoap.org/soap/envelope/'.freeze
+      BODY   = 'http://schemas.xmlsoap.org/soap/envelope/'.freeze
       ACTION = 'https://system.globalsign.com/kb/ws/v1/'.freeze
     end
 

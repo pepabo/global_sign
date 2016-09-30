@@ -3,8 +3,8 @@ require 'spec_helper'
 describe GlobalSign::Request do
   let(:request) do
     GlobalSign::UrlVerification::Request.new(
-      order_kind: 'new',
-      csr: 'xxxxx',
+      order_kind:    'new',
+      csr:           'xxxxx',
       contract_info: GlobalSign.contract_information,
     )
   end
@@ -32,7 +32,7 @@ describe GlobalSign::Request do
     before do
       GlobalSign.configure do |config|
         config.user_name = user_name
-        config.password = password
+        config.password  = password
       end
     end
 

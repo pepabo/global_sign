@@ -2,8 +2,8 @@ module GlobalSign
   module UrlVerification
     class Response < GlobalSign::Response
       module XPath
-        ORDER_ID = '//Response/OrderID'
-        META_TAG = '//Response/MetaTag'
+        ORDER_ID              = '//Response/OrderID'
+        META_TAG              = '//Response/MetaTag'
         VERIFICATION_URL_LIST = '//Response/VerificationURLList'
       end
 

@@ -2,8 +2,8 @@ module GlobalSign
   module UrlVerification
     class Request < GlobalSign::Request
       def initialize(order_kind:, csr:, contract_info:)
-        @order_kind = order_kind
-        @csr = csr
+        @order_kind    = order_kind
+        @csr           = csr
         @contract_info = contract_info
       end
 
@@ -19,8 +19,8 @@ module GlobalSign
         {
           OrderRequestParameter: {
             ProductCode: 'DV_LOW_URL',
-            OrderKind: @order_kind,
-            Licenses: 1,
+            OrderKind:   @order_kind,
+            Licenses:    1,
             ValidityPeriod: {
               Months: 1
             },
@@ -28,9 +28,9 @@ module GlobalSign
           },
           ContactInfo: {
             FirstName: @contract_info.first_name,
-            LastName: @contract_info.last_name,
-            Phone: @contract_info.phone_number,
-            Email: @contract_info.email
+            LastName:  @contract_info.last_name,
+            Phone:     @contract_info.phone_number,
+            Email:     @contract_info.email
           }
         }
       end
