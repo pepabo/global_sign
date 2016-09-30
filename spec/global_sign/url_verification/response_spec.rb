@@ -5,7 +5,8 @@ describe GlobalSign::UrlVerification::Response do
   let(:contract_information) { GlobalSign.contract_information }
 
   let(:csr) do
-    '-----BEGIN CERTIFICATE REQUEST-----
+    <<-EOS
+    -----BEGIN CERTIFICATE REQUEST-----
     MIICuDCCAaACAQAwczELMAkGA1UEBhMCSlAxDjAMBgNVBAgTBVRva3lvMRMwEQYD
     VQQHEwpTaGlidXlhLWt1MRkwFwYDVQQKExBHTU8gUGVwYWJvLCBJbmMuMQowCAYD
     VQQLEwEtMRgwFgYDVQQDEw93d3cuZXhhbXBsZS5jb20wggEiMA0GCSqGSIb3DQEB
@@ -21,7 +22,8 @@ describe GlobalSign::UrlVerification::Response do
     ehacXTKnkLVndPImstQHq0iKM3ScUuIYpKodM7rVugjTiBt0cKe6dERoTQqWr+gH
     gUktKs5ENeEWEW4Gepr3XBUTV4ViP29i/pYCMZc294hhx9Y0ggXPceKNBaqeHsYt
     fTyAz1FGQxpdac76Jp9EO1xnzGCnPp9A3ACneg==
-    -----END CERTIFICATE REQUEST-----'
+    -----END CERTIFICATE REQUEST-----
+    EOS
   end
 
   before do

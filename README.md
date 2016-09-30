@@ -51,9 +51,11 @@ require 'global_sign'
 client = GlobalSign::Client.new
 
 # Prepare CSR beforehand
-csr = '-----BEGIN CERTIFICATE REQUEST-----
+csr = <<-EOS
+-----BEGIN CERTIFICATE REQUEST-----
 ...
------END CERTIFICATE REQUEST-----'
+-----END CERTIFICATE REQUEST-----
+EOS
 
 request = GlobalSign::UrlVerification::Request.new(
   order_kind:    'new',   # If you request a new certificate
