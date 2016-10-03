@@ -1,9 +1,6 @@
-box: wercker/rvm
-
+box: phusion/passenger-ruby22
 build:
     steps:
-        - rvm-use:
-            version: ruby-2.2.4
         - bundle-install
         - script:
             name: echo ruby information
