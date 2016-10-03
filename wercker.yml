@@ -1,10 +1,10 @@
-box: ruby:2.2.0
+box: wercker/rvm
 
 build:
     steps:
-        - script:
-            name: bundle install
-            code: bundle install
+        - rvm-use:
+            version: 2.2.4
+        - bundle-install
         - script:
             name: echo ruby information
             code: |
