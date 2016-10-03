@@ -2,7 +2,9 @@ box: ruby:2.2.0
 
 build:
     steps:
-        - bundle-install
+        - script:
+            name: bundle install
+            code: bundle install
         - script:
             name: echo ruby information
             code: |
