@@ -3,7 +3,7 @@ box: wercker/rvm
 build:
     steps:
         - rvm-use:
-            version: 2.2.4
+            version: ruby-2.2.4
         - bundle-install
         - script:
             name: echo ruby information
