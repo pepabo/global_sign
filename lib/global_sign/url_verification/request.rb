@@ -1,10 +1,11 @@
 module GlobalSign
   module UrlVerification
     class Request < GlobalSign::Request
-      def initialize(order_kind:, csr:, contract_info: nil)
-        @order_kind    = order_kind
-        @csr           = csr
-        @contract_info = contract_info || GlobalSign.contract_information
+      def initialize(order_kind:, validity_period_m:, csr:, contract_info: nil)
+        @order_kind        = order_kind
+        @validity_period_m = validity_period_m
+        @csr               = csr
+        @contract_info     = contract_info || GlobalSign.contract_information
       end
 
       def path
@@ -22,7 +23,7 @@ module GlobalSign
             OrderKind:   @order_kind,
             Licenses:    1,
             ValidityPeriod: {
-              Months: 1
+              Months: @validity_period_m
             },
             CSR: @csr,
           },

@@ -58,9 +58,10 @@ contract = GlobalSign::Contract.new(
 )
 
 request = GlobalSign::UrlVerification::Request.new(
-  order_kind:    'new',   # If you request a new certificate
-  csr:           csr,
-  contract_info: contract,
+  order_kind:        'new',   # If you request a new certificate
+  validity_period_m: 1,
+  csr:               csr,
+  contract_info:     contract,
 )
 
 response = client.process(request)
@@ -85,8 +86,9 @@ end
 
 # Not need to give argument 'contract_info'
 request = GlobalSign::UrlVerification::Request.new(
-  order_kind: 'new',
-  csr:        csr,
+  order_kind:        'new',
+  validity_period_m: 1,
+  csr:               csr,
 )
 ```
 
