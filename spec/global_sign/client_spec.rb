@@ -11,7 +11,7 @@ describe GlobalSign::Client do
   end
 
   describe '#process' do
-    context 'receiving wrong parameter' do
+    context 'when receiving wrong parameter' do
       let(:wrong_class_request) { Class.new }
 
       it 'raises ArgumentError' do
@@ -23,7 +23,7 @@ describe GlobalSign::Client do
   end
 
   describe '#find_response_class_for' do
-    context 'receiving url_verification' do
+    context 'when receiving url_verification' do
       let(:url_verification_request) do
         GlobalSign::UrlVerification::Request.new(
           order_kind:        'new',
@@ -37,7 +37,7 @@ describe GlobalSign::Client do
       end
     end
 
-    context 'receiving wrong parameter' do
+    context 'when receiving wrong parameter' do
       let(:wrong_class_request) { Class.new }
 
       it 'raises ArgumentError' do
