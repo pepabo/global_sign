@@ -45,7 +45,7 @@ describe GlobalSign::UrlVerification::Response do
     let(:request) do
       GlobalSign::UrlVerification::Request.new(
         order_kind:        'new',
-        validity_period_m: 1,
+        validity_period:   1,
         csr:               csr,
         contract_info:     contract,
       )
@@ -71,7 +71,7 @@ describe GlobalSign::UrlVerification::Response do
     let(:request) do
       GlobalSign::UrlVerification::Request.new(
         order_kind:        'invalid_kind',
-        validity_period_m: 1,
+        validity_period:   1,
         csr:               csr,
         contract_info:     contract,
       )

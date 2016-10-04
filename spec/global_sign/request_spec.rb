@@ -13,7 +13,7 @@ describe GlobalSign::Request do
   let(:request) do
     GlobalSign::UrlVerification::Request.new(
       order_kind:        'new',
-      validity_period_m: 1,
+      validity_period:   1,
       csr:               'xxxxx',
       contract_info:     contract,
     )

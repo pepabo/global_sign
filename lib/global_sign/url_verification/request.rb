@@ -1,9 +1,9 @@
 module GlobalSign
   module UrlVerification
     class Request < GlobalSign::Request
-      def initialize(order_kind:, validity_period_m:, csr:, contract_info: nil)
+      def initialize(order_kind:, validity_period:, csr:, contract_info: nil)
         @order_kind        = order_kind
-        @validity_period_m = validity_period_m
+        @validity_period   = validity_period
         @csr               = csr
         @contract_info     = contract_info || GlobalSign.contract
       end
@@ -23,7 +23,7 @@ module GlobalSign
             OrderKind:   @order_kind,
             Licenses:    1,
             ValidityPeriod: {
-              Months: @validity_period_m
+              Months: @validity_period
             },
             CSR: @csr,
           },
