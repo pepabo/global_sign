@@ -74,7 +74,7 @@ else
 end
 ```
 
-To use contract on Rails initializer, do it like this:
+It's also possible to set contract within your configure block.
 
 ```ruby
 GlobalSign.set_contract do |contract|
