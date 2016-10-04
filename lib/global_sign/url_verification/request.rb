@@ -5,7 +5,7 @@ module GlobalSign
         @order_kind        = order_kind
         @validity_period_m = validity_period_m
         @csr               = csr
-        @contract_info     = contract_info || GlobalSign.contract_information
+        @contract_info     = contract_info || GlobalSign.contract
       end
 
       def path

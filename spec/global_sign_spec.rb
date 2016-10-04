@@ -26,7 +26,7 @@ describe GlobalSign do
     end
 
     it 'proxies to GlobalSign contract information' do
-      expect(GlobalSign.contract_information.first_name).to eq('Pepabo')
+      expect(GlobalSign.contract.first_name).to eq('Pepabo')
     end
   end
 end
