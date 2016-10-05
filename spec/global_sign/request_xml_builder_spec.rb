@@ -13,10 +13,10 @@ describe GlobalSign::RequestXmlBuilder do
 
     let(:request) do
       GlobalSign::UrlVerification::Request.new(
-        order_kind:        'new',
-        validity_period:   1,
-        csr:               'xxxxx',
-        contract_info:     contract,
+        order_kind:             'new',
+        validity_period_months: 1,
+        csr:                    'xxxxx',
+        contract_info:          contract,
       )
     end
 
