@@ -39,7 +39,7 @@ describe GlobalSign::UrlVerification::Response do
     end
   end
 
-  context 'when returning success response' do
+  context 'when returned success response' do
     let(:cassette_title) { 'success' }
 
     let(:request) do
@@ -65,7 +65,7 @@ describe GlobalSign::UrlVerification::Response do
     end
   end
 
-  context 'when returning error response' do
+  context 'when returned error response' do
     let(:cassette_title) { 'failure' }
 
     let(:request) do
