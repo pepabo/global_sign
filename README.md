@@ -92,6 +92,32 @@ request = GlobalSign::UrlVerification::Request.new(
 )
 ```
 
+### URL Verification for Issue
+
+```ruby
+client = GlobalSign::Client.new
+
+# You can use ApproverURL value such as:
+# - http://example.com
+# - https://example.com
+# - http://www.example.com
+# - https://www.example.com
+
+request = GlobalSign::URLVerificationForIssue::Request.new(
+  order_id:     'xxxx123456789',
+  approver_url: 'http://example.com',
+)
+
+response = client.process(request)
+
+if response.success?
+  puts "Successfully URL Verification for Issue"
+  puts response.params # => { fulfillment: { ca_certificates: [{ ca_cert: "xxxxx" }, ...]}, ... }
+else
+  raise StandardError, "#{response.error_code}: #{response.error_message}"
+end
+```
+
 ## Contributing
 
 1. Create your feature branch (git checkout -b my-new-feature)
