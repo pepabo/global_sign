@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe GlobalSign::UrlVerificationForIssue::Response do
+  let(:client) { GlobalSign::Client.new }
+
   before do
     VCR.use_cassette('url_verification_for_issue/' + cassette_title) do
       @response = client.process(request)
@@ -11,7 +13,10 @@ describe GlobalSign::UrlVerificationForIssue::Response do
     let(:cassette_title) { 'success' }
 
     let(:request) do
-      GlobalSign::UrlVerificationForIssue::Request.new()
+      GlobalSign::UrlVerificationForIssue::Request.new(
+        order_id:     'xxxx123456789',
+        approver_url: 'http://example.com',
+      )
     end
 
     xit 'succeeds' do
@@ -30,12 +35,16 @@ describe GlobalSign::UrlVerificationForIssue::Response do
     let(:cassette_title) { 'failure' }
 
     let(:request) do
-      GlobalSign::UrlVerificationForIssue::Request.new()
+      GlobalSign::UrlVerificationForIssue::Request.new(
+        order_id:     'xxxx123456789',
+        approver_url: 'http://example.com',
+      )
     end
 
-    xit 'fails' do
+    it 'fails' do
       expect(@response.error?).to be_truthy
-      # expect error detail be_present
+      expect(@response.error_code).to eq('-4147')
+      expect(@response.error_message).to include('We were unable to verify the domain http://example.com.')
     end
   end
 end
