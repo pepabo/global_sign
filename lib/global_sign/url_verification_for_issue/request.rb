@@ -17,7 +17,7 @@ module GlobalSign
       def params
         {
           OrderID:     @order_id,
-          ApproverURL: @approver_url
+          ApproverURL: @approver_url,
         }
       end
     end

@@ -28,7 +28,6 @@ describe GlobalSign::UrlVerificationForIssue::Response do
 
     it 'response includes url_verification_for_issue params' do
       expect(@response.params[:certificate_info]).to be_present
-      expect(@response.params[:fulfillment]).to be_present
       expect(@response.params[:fulfillment][:ca_certificates].first).to be_present
     end
   end
