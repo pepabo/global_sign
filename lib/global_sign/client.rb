@@ -27,6 +27,8 @@ module GlobalSign
       case request
       when GlobalSign::UrlVerification::Request
         GlobalSign::UrlVerification::Response
+      when GlobalSign::UrlVerificationForIssue::Request
+        GlobalSign::UrlVerificationForIssue::Response
       else
         raise ArgumentError, 'invalid request argument'
       end

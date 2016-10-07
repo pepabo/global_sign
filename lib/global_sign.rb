@@ -8,6 +8,7 @@ require 'global_sign/request'
 require 'global_sign/response'
 
 require 'global_sign/url_verification'
+require 'global_sign/url_verification_for_issue'
 
 module GlobalSign
   class << self
