@@ -103,7 +103,7 @@ client = GlobalSign::Client.new
 # - http://www.example.com
 # - https://www.example.com
 
-request = GlobalSign::URLVerificationForIssue::Request.new(
+request = GlobalSign::UrlVerificationForIssue::Request.new(
   order_id:     'xxxx123456789',
   approver_url: 'http://example.com',
 )
