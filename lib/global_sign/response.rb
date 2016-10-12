@@ -23,7 +23,7 @@ module GlobalSign
     end
 
     def error?
-      !success?
+      !success? && !warning?
     end
 
     def error_code
