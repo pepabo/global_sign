@@ -33,55 +33,58 @@ describe GlobalSign::UrlVerification::Response do
     EOS
   end
 
-  before do
-    VCR.use_cassette('url_verification/' + cassette_title) do
-      @response = client.process(request)
+  context 'when request a new certificate' do
+    before do
+      VCR.use_cassette('url_verification/new/' + cassette_title) do
+        @response = client.process(request)
+      end
+    end
+
+    context 'when returned success response' do
+      let(:cassette_title) { 'success' }
+
+      let(:request) do
+        GlobalSign::UrlVerification::Request.new(
+          order_kind:             'new',
+          validity_period_months: 1,
+          csr:                    csr,
+          contract_info:          contract,
+        )
+      end
+
+      it 'succeeds' do
+        expect(@response.success?).to be_truthy
+        expect(@response.error_code).to be_nil
+        expect(@response.error_field).to be_nil
+        expect(@response.error_message).to be_nil
+      end
+
+      it 'response includes url_verification params' do
+        expect(@response.params[:order_id]).to be_present
+        expect(@response.params[:meta_tag]).to be_present
+        expect(@response.params[:verification_url_list]).to be_present
+      end
+    end
+
+    context 'when returned error response' do
+      let(:cassette_title) { 'failure' }
+
+      let(:request) do
+        GlobalSign::UrlVerification::Request.new(
+          order_kind:             'invalid_kind',
+          validity_period_months: 1,
+          csr:                    csr,
+          contract_info:          contract,
+        )
+      end
+
+      it 'fails' do
+        expect(@response.error?).to be_truthy
+        expect(@response.error_code).to eq('-103')
+        expect(@response.error_field).to eq('OrderRequestParameter.OrderKind')
+        expect(@response.error_message).to include('Parameter length check error.')
+      end
     end
   end
 
-  context 'when returned success response' do
-    let(:cassette_title) { 'success' }
-
-    let(:request) do
-      GlobalSign::UrlVerification::Request.new(
-        order_kind:             'new',
-        validity_period_months: 1,
-        csr:                    csr,
-        contract_info:          contract,
-      )
-    end
-
-    it 'succeeds' do
-      expect(@response.success?).to be_truthy
-      expect(@response.error_code).to be_nil
-      expect(@response.error_field).to be_nil
-      expect(@response.error_message).to be_nil
-    end
-
-    it 'response includes url_verification params' do
-      expect(@response.params[:order_id]).to be_present
-      expect(@response.params[:meta_tag]).to be_present
-      expect(@response.params[:verification_url_list]).to be_present
-    end
-  end
-
-  context 'when returned error response' do
-    let(:cassette_title) { 'failure' }
-
-    let(:request) do
-      GlobalSign::UrlVerification::Request.new(
-        order_kind:             'invalid_kind',
-        validity_period_months: 1,
-        csr:                    csr,
-        contract_info:          contract,
-      )
-    end
-
-    it 'fails' do
-      expect(@response.error?).to be_truthy
-      expect(@response.error_code).to eq('-103')
-      expect(@response.error_field).to eq('OrderRequestParameter.OrderKind')
-      expect(@response.error_message).to include('Parameter length check error.')
-    end
-  end
 end
