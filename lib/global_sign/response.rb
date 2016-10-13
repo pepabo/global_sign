@@ -15,8 +15,7 @@ module GlobalSign
     end
 
     def success?
-      code = @xml.xpath(XPath::RESULT).text
-      code == SUCCESS_CODE || code == WARNING_CODE
+      @xml.xpath(XPath::RESULT).text == SUCCESS_CODE
     end
 
     def warning?
@@ -24,7 +23,7 @@ module GlobalSign
     end
 
     def error?
-      !success?
+      !success? && !warning?
     end
 
     def error_code
