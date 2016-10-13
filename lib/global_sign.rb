@@ -20,8 +20,7 @@ module GlobalSign
     end
 
     def set_contract
-      # initialize with nil, because the initialize method requires keyword args
-      @contract ||= Contract.new(first_name: nil, last_name: nil, phone_number: nil, email: nil)
+      @contract ||= Contract.new
       yield @contract if block_given?
     end
   end
