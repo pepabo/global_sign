@@ -7,11 +7,11 @@ describe GlobalSign do
 
   describe '.configure' do
     before do
-      GlobalSign.configure { |configuration| configuration.user_name = 'PAR12345_taro' }
+      GlobalSign.configure { |configuration| configuration.user_name = 'PAR12345_jiro' }
     end
 
     it 'proxies to GlobalSign configuration' do
-      expect(GlobalSign.configuration.user_name).to eq('PAR12345_taro')
+      expect(GlobalSign.configuration.user_name).to eq('PAR12345_jiro')
     end
   end
 
