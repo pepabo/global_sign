@@ -87,4 +87,60 @@ describe GlobalSign::UrlVerification::Response do
     end
   end
 
+  context 'when request a renewal certificate' do
+    before do
+      VCR.use_cassette('url_verification/renewal/' + cassette_title) do
+        @response = client.process(request)
+      end
+    end
+
+    let(:order_id) { 'xxxx123456789' }
+
+    context 'when returned success response' do
+      let(:cassette_title) { 'success' }
+
+      let(:request) do
+        GlobalSign::UrlVerification::Request.new(
+          order_kind:              'renewal',
+          validity_period_months:  1,
+          csr:                     csr,
+          renewal_target_order_id: order_id,
+          contract_info:           contract,
+        )
+      end
+
+      it 'succeeds' do
+        expect(@response.success?).to be_truthy
+        expect(@response.error_code).to be_nil
+        expect(@response.error_field).to be_nil
+        expect(@response.error_message).to be_nil
+      end
+
+      it 'response includes url_verification params' do
+        expect(@response.params[:order_id]).to be_present
+        expect(@response.params[:meta_tag]).to be_present
+        expect(@response.params[:verification_url_list]).to be_present
+      end
+    end
+
+    context 'when returned error response' do
+      let(:cassette_title) { 'failure' }
+
+      let(:request) do
+        GlobalSign::UrlVerification::Request.new(
+          order_kind:              'renewal',
+          validity_period_months:  1,
+          csr:                     csr,
+          renewal_target_order_id: order_id,
+          contract_info:           contract,
+        )
+      end
+
+      it 'fails' do
+        expect(@response.error?).to be_truthy
+        expect(@response.error_code).to eq('-6102')
+        expect(@response.error_message).to include('The renewal of the certificate failed.')
+      end
+    end
+  end
 end

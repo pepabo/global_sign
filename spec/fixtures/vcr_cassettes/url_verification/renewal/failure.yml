@@ -1,0 +1,84 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test-gcc.globalsign.com/kb/ws/v1/ServerSSLService
+    body:
+      encoding: UTF-8
+      string: |-
+        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns2="https://system.globalsign.com/kb/ws/v1/">
+          <soap:Body>
+            <ns2:URLVerification>
+              <Request>
+                <OrderRequestHeader>
+                  <AuthToken>
+                    <UserName>[USER_NAME]</UserName>
+                    <Password>[PASSWORD]</Password>
+                  </AuthToken>
+                </OrderRequestHeader>
+                <OrderRequestParameter>
+                  <ProductCode>DV_LOW_URL</ProductCode>
+                  <OrderKind>invalid_kind</OrderKind>
+                  <Licenses type="integer">1</Licenses>
+                  <ValidityPeriod>
+                    <Months type="integer">1</Months>
+                  </ValidityPeriod>
+                  <CSR>-----BEGIN CERTIFICATE REQUEST-----
+        MIICuDCCAaACAQAwczELMAkGA1UEBhMCSlAxDjAMBgNVBAgTBVRva3lvMRMwEQYD
+        VQQHEwpTaGlidXlhLWt1MRkwFwYDVQQKExBHTU8gUGVwYWJvLCBJbmMuMQowCAYD
+        VQQLEwEtMRgwFgYDVQQDEw93d3cuZXhhbXBsZS5jb20wggEiMA0GCSqGSIb3DQEB
+        AQUAA4IBDwAwggEKAoIBAQCwKGVMbfx6owwrM2bgsWaQvoGCCSuxscq/PyGOMWuW
+        whZ+Q6sPZJNNyb41jE1LgFgD4a3ku8JhdGjsjGVPi+9/OuGK9IISRMTwUsorwHKS
+        C8hV6T2CBEKdayrZZ6695Mc9jLhn6tqLHRql1lAKXwTBbaDsdyftuMo73AhpjVBL
+        4M2c/lsJWaE0K1S1QORckNwZ1FyDYzX04Urz1IdnJ3wF+bRsN1xQUs2QjFlxA4Ot
+        dqqvIN9oY9wVaNEBZMBAcX5bHPgq7s4BnkoyDh4/7HycNmzK2Z6HzcNvfic/Apvf
+        6+jkBJztEeRo7F1XDj8grOczFX1jUasazI+kn6IdMzTvAgMBAAGgADANBgkqhkiG
+        9w0BAQUFAAOCAQEAV66uWDxCpmvqpYU+ISG4kfxv74o1jxLpjrS07Owfvxt0/mik
+        cFHR+nIDCaHKhgOfJIS9xCvMWIkmHyRih/XK9yCUpmbkOKj2704E0O2FUZiNDZ9x
+        02gufWbtYw8s4ReKewejPtQ6L8SY2QgE5kBvEW3W+ZLTK1EE3LsX6eRCabxOVgAJ
+        ehacXTKnkLVndPImstQHq0iKM3ScUuIYpKodM7rVugjTiBt0cKe6dERoTQqWr+gH
+        gUktKs5ENeEWEW4Gepr3XBUTV4ViP29i/pYCMZc294hhx9Y0ggXPceKNBaqeHsYt
+        fTyAz1FGQxpdac76Jp9EO1xnzGCnPp9A3ACneg==
+        -----END CERTIFICATE REQUEST-----</CSR>
+                  <RenewalTargetOrderID>xxxx123456789</RenewalTargetOrderID>
+                </OrderRequestParameter>
+                <ContactInfo>
+                  <FirstName>Pepabo</FirstName>
+                  <LastName>Taro</LastName>
+                  <Phone>090-1234-5678</Phone>
+                  <Email>pepabo.taro@example.com</Email>
+                </ContactInfo>
+              </Request>
+            </ns2:URLVerification>
+          </soap:Body>
+        </soap:Envelope>
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Content-Type:
+      - text/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 30 Sep 2016 01:27:28 GMT
+      Set-Cookie:
+      - JSESSIONID=F5EBC49A0267239CEE7D7943059D4BAB; Path=/kb
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '1018'
+      Strict-Transport-Security:
+      - max-age=60
+    body:
+      encoding: UTF-8
+      string: <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:URLVerificationResponse xmlns:ns2="https://system.globalsign.com/kb/ws/v1/"><Response><OrderResponseHeader><SuccessCode>-1</SuccessCode><Errors><Error><ErrorCode>-6102</ErrorCode><ErrorMessage>The renewal of the certificate failed. Please note that when renewing a certificate, the Common Name of the original certificate and this request must be the same. Please also check that the status of the original order is ISSUED and that the order has not been previously renewed.</ErrorMessage></Error></Errors><Timestamp>2016-09-30T10:27:28.520+09:00</Timestamp></OrderResponseHeader><OrderID xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/><MetaTag xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/><VerificationURLList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/></Response></ns2:URLVerificationResponse></soap:Body></soap:Envelope>
+    http_version:
+  recorded_at: Fri, 30 Sep 2016 01:27:28 GMT
+recorded_with: VCR 3.0.3
