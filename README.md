@@ -84,11 +84,24 @@ GlobalSign.set_contract do |contract|
   contract.email        = 'pepabo.taro@example.com'
 end
 
-# Not need to give argument 'contract_info'
+# Not need to give the argument 'contract_info'
 request = GlobalSign::UrlVerification::Request.new(
   order_kind:             'new',
   validity_period_months: 1,
   csr:                    csr,
+)
+```
+
+If you request a renewal certificate, you should set `renewal` to the value of argument `order_kind`.  
+And you should give the argument `renewal_target_order_id` .
+
+```ruby
+request = GlobalSign::UrlVerification::Request.new(
+  order_kind:              'renewal',
+  validity_period_months:  1,
+  csr:                     csr,
+  renewal_target_order_id: 'xxxx123456789',
+  contract_info:           contract,
 )
 ```
 
