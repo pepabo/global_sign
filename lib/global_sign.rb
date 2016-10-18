@@ -9,6 +9,7 @@ require 'global_sign/response'
 
 require 'global_sign/url_verification'
 require 'global_sign/url_verification_for_issue'
+require 'global_sign/get_order_by_order_id'
 
 module GlobalSign
   class << self
