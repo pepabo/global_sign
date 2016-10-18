@@ -33,7 +33,7 @@ describe GlobalSign::UrlVerification::Response do
     EOS
   end
 
-  context 'when request a new certificate' do
+  context 'when requested a new certificate' do
     before do
       VCR.use_cassette('url_verification/new/' + cassette_title) do
         @response = client.process(request)
@@ -87,7 +87,7 @@ describe GlobalSign::UrlVerification::Response do
     end
   end
 
-  context 'when request a renewal certificate' do
+  context 'when requested a renewal certificate' do
     before do
       VCR.use_cassette('url_verification/renewal/' + cassette_title) do
         @response = client.process(request)
