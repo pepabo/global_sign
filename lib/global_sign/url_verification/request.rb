@@ -1,12 +1,7 @@
 module GlobalSign
   module UrlVerification
     class Request < GlobalSign::Request
-      def initialize(
-        order_kind:,
-        validity_period_months:,
-        csr:,
-        renewal_target_order_id: nil,
-        contract_info:           nil)
+      def initialize(order_kind:, validity_period_months:, csr:, renewal_target_order_id: nil, contract_info: nil)
 
         @order_kind              = order_kind
         @validity_period_months  = validity_period_months
