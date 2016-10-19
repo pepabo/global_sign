@@ -46,7 +46,7 @@ describe GlobalSign::UrlVerification::Response do
       let(:request) do
         GlobalSign::UrlVerification::Request.new(
           order_kind:             'new',
-          validity_period_months: 1,
+          validity_period_months: 6,
           csr:                    csr,
           contract_info:          contract,
         )
@@ -72,7 +72,7 @@ describe GlobalSign::UrlVerification::Response do
       let(:request) do
         GlobalSign::UrlVerification::Request.new(
           order_kind:             'invalid_kind',
-          validity_period_months: 1,
+          validity_period_months: 6,
           csr:                    csr,
           contract_info:          contract,
         )
@@ -102,7 +102,7 @@ describe GlobalSign::UrlVerification::Response do
       let(:request) do
         GlobalSign::UrlVerification::Request.new(
           order_kind:              'renewal',
-          validity_period_months:  1,
+          validity_period_months:  6,
           csr:                     csr,
           renewal_target_order_id: order_id,
           contract_info:           contract,
@@ -129,7 +129,7 @@ describe GlobalSign::UrlVerification::Response do
       let(:request) do
         GlobalSign::UrlVerification::Request.new(
           order_kind:              'renewal',
-          validity_period_months:  1,
+          validity_period_months:  6,
           csr:                     csr,
           renewal_target_order_id: order_id,
           contract_info:           contract,
