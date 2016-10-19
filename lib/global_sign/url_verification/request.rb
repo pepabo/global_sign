@@ -37,11 +37,13 @@ module GlobalSign
         }
 
         # require `RenewalTargetOrderID` to request a renewal certificate
-        _params.tap {|h|
-          if @order_kind == 'renewal'
-            h[:OrderRequestParameter][:RenewalTargetOrderID] = @renewal_target_order_id
-          end
-        }
+        if @order_kind == 'renewal'
+          _params[:OrderRequestParameter].merge!(
+            { RenewalTargetOrderID: @renewal_target_order_id }
+          )
+        end
+
+        _params
       end
     end
   end
