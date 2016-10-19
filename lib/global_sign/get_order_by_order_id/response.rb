@@ -15,6 +15,10 @@ module GlobalSign
         }
       end
 
+      def order_status
+        OrderStatus::STATUS_MAPPING[params[:order_status]]
+      end
+
       private
 
       def modification_events_list
