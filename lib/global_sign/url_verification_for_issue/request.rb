@@ -14,6 +14,10 @@ module GlobalSign
         'URLVerificationForIssue'
       end
 
+      def request_header
+        :OrderRequestHeader
+      end
+
       def params
         {
           OrderID:     @order_id,

@@ -13,6 +13,10 @@ module GlobalSign
         'GetOrderByOrderID'
       end
 
+      def request_header
+        :QueryRequestHeader
+      end
+
       def params
         { OrderID: @order_id }
       end
