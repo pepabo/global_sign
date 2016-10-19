@@ -14,7 +14,7 @@ describe GlobalSign::RequestXmlBuilder do
     let(:request) do
       GlobalSign::UrlVerification::Request.new(
         order_kind:             'new',
-        validity_period_months: 1,
+        validity_period_months: 6,
         csr:                    'xxxxx',
         contract_info:          contract,
       )
