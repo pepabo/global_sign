@@ -59,7 +59,7 @@ describe GlobalSign::UrlVerification::Response do
         expect(@response.error_message).to be_nil
       end
 
-      it 'response includes url_verification params' do
+      it 'returns response includes url_verification params' do
         expect(@response.params[:order_id]).to be_present
         expect(@response.params[:meta_tag]).to be_present
         expect(@response.params[:verification_url_list]).to be_present
@@ -116,7 +116,7 @@ describe GlobalSign::UrlVerification::Response do
         expect(@response.error_message).to be_nil
       end
 
-      it 'response includes url_verification params' do
+      it 'returns response includes url_verification params' do
         expect(@response.params[:order_id]).to be_present
         expect(@response.params[:meta_tag]).to be_present
         expect(@response.params[:verification_url_list]).to be_present
