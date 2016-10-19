@@ -7,7 +7,7 @@
           <OrderKind>new</OrderKind>
           <Licenses type="integer">1</Licenses>
           <ValidityPeriod>
-            <Months type="integer">1</Months>
+            <Months type="integer">6</Months>
           </ValidityPeriod>
           <CSR>xxxxx</CSR>
         </OrderRequestParameter>
