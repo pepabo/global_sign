@@ -23,8 +23,10 @@ describe GlobalSign::GetOrderByOrderId::Response do
       expect(@response.error_message).to be_nil
     end
 
-    xit 'response includes url_verification params' do
+    it 'response includes get_order_by_order_id params' do
       expect(@response.params[:order_id]).to be_present
+      expect(@response.params[:order_status]).to be_present
+      expect(@response.params[:modification_events]).to be_present
     end
   end
 
