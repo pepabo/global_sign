@@ -13,10 +13,10 @@ describe GlobalSign::GetOrderByOrderId::Response do
     let(:cassette_title) { 'success' }
 
     let(:request) do
-      GlobalSign::GetOrderByOrderId::Request.new
+      GlobalSign::GetOrderByOrderId::Request.new(order_id: 'xxxx123456789')
     end
 
-    xit 'succeeds' do
+    it 'succeeds' do
       expect(@response.success?).to be_truthy
       expect(@response.error_code).to be_nil
       expect(@response.error_field).to be_nil
@@ -32,14 +32,13 @@ describe GlobalSign::GetOrderByOrderId::Response do
     let(:cassette_title) { 'failure' }
 
     let(:request) do
-      GlobalSign::GetOrderByOrderId::Request.new
+      GlobalSign::GetOrderByOrderId::Request.new(order_id: 'invalid_order_id')
     end
 
-    xit 'fails' do
+    it 'fails' do
       expect(@response.error?).to be_truthy
-      expect(@response.error_code).to eq('-103')
-      expect(@response.error_field).to eq('OrderRequestParameter.OrderKind')
-      expect(@response.error_message).to include('Parameter length check error.')
+      expect(@response.error_code).to eq('-1')
+      expect(@response.error_message).to include('Internal system error.')
     end
   end
 end
