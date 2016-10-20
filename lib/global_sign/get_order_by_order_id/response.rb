@@ -22,10 +22,10 @@ module GlobalSign
       private
 
       def modification_events_list
-        @xml.xpath(XPath::MODIFICATION_EVENTS).children.map do |e|
+        @xml.xpath(XPath::MODIFICATION_EVENTS).children.map do |element|
           {
-            name:      e.at('ModificationEventName').text,
-            timestamp: e.at('ModificationEventTimestamp').text,
+            name:      element.at('ModificationEventName').text,
+            timestamp: element.at('ModificationEventTimestamp').text,
           }
         end
       end
