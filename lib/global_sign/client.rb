@@ -29,8 +29,8 @@ module GlobalSign
         GlobalSign::UrlVerification::Response
       when GlobalSign::UrlVerificationForIssue::Request
         GlobalSign::UrlVerificationForIssue::Response
-      when GlobalSign::GetOrderByOrderId::Request
-        GlobalSign::GetOrderByOrderId::Response
+      when GlobalSign::OrderInformation::Request
+        GlobalSign::OrderInformation::Response
       else
         raise ArgumentError, 'invalid request argument'
       end

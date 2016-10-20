@@ -10,7 +10,7 @@ require 'global_sign/order_status'
 
 require 'global_sign/url_verification'
 require 'global_sign/url_verification_for_issue'
-require 'global_sign/get_order_by_order_id'
+require 'global_sign/order_information'
 
 module GlobalSign
   class << self

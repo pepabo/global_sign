@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe GlobalSign::GetOrderByOrderId::Response do
+describe GlobalSign::OrderInformation::Response do
   let(:client) { GlobalSign::Client.new }
 
   before do
-    VCR.use_cassette('get_order_by_order_id/' + cassette_title) do
+    VCR.use_cassette('order_information/' + cassette_title) do
       @response = client.process(request)
     end
   end
@@ -13,7 +13,7 @@ describe GlobalSign::GetOrderByOrderId::Response do
     let(:cassette_title) { 'success' }
 
     let(:request) do
-      GlobalSign::GetOrderByOrderId::Request.new(order_id: 'xxxx123456789')
+      GlobalSign::OrderInformation::Request.new(order_id: 'xxxx123456789')
     end
 
     it 'succeeds' do
@@ -23,7 +23,7 @@ describe GlobalSign::GetOrderByOrderId::Response do
       expect(@response.error_message).to be_nil
     end
 
-    it 'response includes get_order_by_order_id params' do
+    it 'response includes order_information params' do
       expect(@response.params[:order_id]).to be_present
       expect(@response.params[:order_status]).to be_present
       expect(@response.params[:modification_events]).to be_present
@@ -38,7 +38,7 @@ describe GlobalSign::GetOrderByOrderId::Response do
     let(:cassette_title) { 'failure' }
 
     let(:request) do
-      GlobalSign::GetOrderByOrderId::Request.new(order_id: 'invalid_order_id')
+      GlobalSign::OrderInformation::Request.new(order_id: 'invalid_order_id')
     end
 
     it 'fails' do

@@ -134,7 +134,7 @@ end
 ### Get Order by OrderID
 
 ```ruby
-request = GlobalSign::GetOrderByOrderId::Request.new(order_id: 'xxxx123456789')
+request = GlobalSign::OrderInformation::Request.new(order_id: 'xxxx123456789')
 response = client.process(request)
 
 puts response.params # => { order_id: "xxxx123456789", order_status: "2", ... }
