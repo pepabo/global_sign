@@ -15,7 +15,7 @@ module GlobalSign
         }
       end
 
-      def order_status
+      def order_status_text
         OrderStatus::STATUS_MAPPING[params[:order_status]]
       end
 

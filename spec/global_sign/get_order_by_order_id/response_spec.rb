@@ -28,6 +28,10 @@ describe GlobalSign::GetOrderByOrderId::Response do
       expect(@response.params[:order_status]).to be_present
       expect(@response.params[:modification_events]).to be_present
     end
+
+    it 'returns order_status text' do
+      expect(@response.order_status_text).to eq('initial')
+    end
   end
 
   context 'when returned error response' do
