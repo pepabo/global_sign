@@ -6,8 +6,8 @@ module GlobalSign
       '3' => 'cancelled_before_issue',
       '4' => 'completed_issue',
       '5' => 'cancelled_after_issue',
-      '6' => 'waiting_for_certificate_revocation',
-      '7' => 'revoked_certificate',
+      '6' => 'waiting_for_revocation',
+      '7' => 'revoked',
     }.each_value(&:freeze).freeze
   end
 end
