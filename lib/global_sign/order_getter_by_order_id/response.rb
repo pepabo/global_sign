@@ -1,5 +1,5 @@
 module GlobalSign
-  module OrderInformation
+  module OrderGetterByOrderId
     class Response < GlobalSign::Response
       module XPath
         ORDER_ID            = '//Response/OrderID'

@@ -1,5 +1,5 @@
 module GlobalSign
-  module OrderInformation
+  module OrderGetterByOrderId
     class Request < GlobalSign::Request
       def initialize(order_id:)
         @order_id = order_id
