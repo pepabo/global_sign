@@ -8,10 +8,7 @@ module GlobalSign
     end
 
     def auth_token_params
-      _params = {}
-      _params[request_header] = auth_token_hash
-
-      _params
+      { "#{request_header}": auth_token_hash }
     end
 
     def auth_token_hash
