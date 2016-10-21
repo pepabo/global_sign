@@ -140,7 +140,7 @@ response = client.process(request)
 puts response.params # => { order_id: "xxxx123456789", order_status: "2", ... }
 
 # You can get order_status explanation
-puts response.order_status  # => "phishing_checking"
+puts response.order_status_text  # => "phishing_checking"
 ```
 
 ## Contributing
