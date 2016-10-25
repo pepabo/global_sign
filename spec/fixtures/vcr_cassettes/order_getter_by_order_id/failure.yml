@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test-gcc.globalsign.com/kb/ws/v1/GASService
+    body:
+      encoding: UTF-8
+      string: |-
+        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns2="https://system.globalsign.com/kb/ws/v1/">
+          <soap:Body>
+            <ns2:GetOrderByOrderID>
+              <Request>
+                <QueryRequestHeader>
+                  <AuthToken>
+                    <UserName>[USER_NAME]</UserName>
+                    <Password>[PASSWORD]</Password>
+                  </AuthToken>
+                </QueryRequestHeader>
+                <OrderID>invalid_order_id</OrderID>
+              </Request>
+            </ns2:GetOrderByOrderID>
+          </soap:Body>
+        </soap:Envelope>
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Content-Type:
+      - text/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 19 Oct 2016 03:57:51 GMT
+      Set-Cookie:
+      - JSESSIONID=AC607804400D5B880A0124555EC2E45E; Path=/kb
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '730'
+      Strict-Transport-Security:
+      - max-age=60
+    body:
+      encoding: UTF-8
+      string: <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:GetOrderByOrderIDResponse xmlns:ns2="https://system.globalsign.com/kb/ws/v1/"><Response><OrderResponseHeader><SuccessCode>-1</SuccessCode><Errors><Error><ErrorCode>-1</ErrorCode><ErrorMessage>Internal system error. Please reexecute what you were doing. If error persists, please contact GlobalSign Support</ErrorMessage></Error></Errors><Timestamp>2016-10-19T12:57:51.873+09:00</Timestamp></OrderResponseHeader><OrderID xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/><OrderDetail xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/></Response></ns2:GetOrderByOrderIDResponse></soap:Body></soap:Envelope>
+    http_version:
+  recorded_at: Wed, 19 Oct 2016 03:57:51 GMT
+recorded_with: VCR 3.0.3

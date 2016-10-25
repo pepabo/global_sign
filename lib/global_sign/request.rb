@@ -8,12 +8,14 @@ module GlobalSign
     end
 
     def auth_token_params
+      { "#{request_header}": auth_token_hash }
+    end
+
+    def auth_token_hash
       {
-        OrderRequestHeader: {
-          AuthToken: {
-            UserName: GlobalSign.configuration.user_name,
-            Password: GlobalSign.configuration.password,
-          }
+        AuthToken: {
+          UserName: GlobalSign.configuration.user_name,
+          Password: GlobalSign.configuration.password,
         }
       }
     end

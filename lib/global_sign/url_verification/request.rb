@@ -17,6 +17,10 @@ module GlobalSign
         'URLVerification'
       end
 
+      def request_header
+        :OrderRequestHeader
+      end
+
       def params
         _params = {
           OrderRequestParameter: {

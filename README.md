@@ -131,6 +131,18 @@ else
 end
 ```
 
+### Get Order by OrderID
+
+```ruby
+request = GlobalSign::OrderGetterByOrderId::Request.new(order_id: 'xxxx123456789')
+response = client.process(request)
+
+puts response.params # => { order_id: "xxxx123456789", order_status: "2", ... }
+
+# You can get order_status explanation
+puts response.order_status_text  # => "phishing_checking"
+```
+
 ## Contributing
 
 1. Create your feature branch (git checkout -b my-new-feature)

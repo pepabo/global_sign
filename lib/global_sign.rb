@@ -6,9 +6,11 @@ require 'global_sign/contract'
 require 'global_sign/request_xml_builder'
 require 'global_sign/request'
 require 'global_sign/response'
+require 'global_sign/order_status'
 
 require 'global_sign/url_verification'
 require 'global_sign/url_verification_for_issue'
+require 'global_sign/order_getter_by_order_id'
 
 module GlobalSign
   class << self
