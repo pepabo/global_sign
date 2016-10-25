@@ -2,7 +2,7 @@
 
 [![wercker status](https://app.wercker.com/status/8cf8771f0da8bc4f1ea0adc8eb65b295/s/master "wercker status")](https://app.wercker.com/project/byKey/8cf8771f0da8bc4f1ea0adc8eb65b295)
 
-A Ruby interface to the GlobalSign API.
+A Ruby interface to the [GlobalSign](https://jp.globalsign.com/) API.
 
 ## Installation
 
