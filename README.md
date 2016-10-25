@@ -151,3 +151,9 @@ puts response.order_status_text  # => "phishing_checking"
 2. Commit your changes (git commit -am 'Add some feature')
 3. Push to the branch (git push origin my-new-feature)
 4. Create a new Pull Request
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2016- GMO Pepabo, Inc.
