@@ -1,6 +1,10 @@
 # GlobalSign
 
-A Ruby interface to the GlobalSign API.
+[![wercker status](https://app.wercker.com/status/8cf8771f0da8bc4f1ea0adc8eb65b295/s/master "wercker status")](https://app.wercker.com/project/byKey/8cf8771f0da8bc4f1ea0adc8eb65b295)
+
+A Ruby interface to the [GlobalSign](https://www.globalsign.com/) API.
+
+For more information and detailed documentation about the API visit [this page](https://www.globalsign.com/en/resources/apis/api-documentation/) .
 
 ## Installation
 
@@ -149,3 +153,9 @@ puts response.order_status_text  # => "phishing_checking"
 2. Commit your changes (git commit -am 'Add some feature')
 3. Push to the branch (git push origin my-new-feature)
 4. Create a new Pull Request
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2016- GMO Pepabo, Inc.
