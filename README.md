@@ -1,5 +1,6 @@
 # GlobalSign
 
+[![Gem Version](https://badge.fury.io/rb/global_sign.svg)](https://badge.fury.io/rb/global_sign)
 [![wercker status](https://app.wercker.com/status/8cf8771f0da8bc4f1ea0adc8eb65b295/s/master "wercker status")](https://app.wercker.com/project/byKey/8cf8771f0da8bc4f1ea0adc8eb65b295)
 
 A Ruby interface to the [GlobalSign](https://www.globalsign.com/) API.
