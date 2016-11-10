@@ -1,5 +1,6 @@
 # GlobalSign
 
+[![Gem Version](https://badge.fury.io/rb/global_sign.svg)](https://badge.fury.io/rb/global_sign)
 [![wercker status](https://app.wercker.com/status/8cf8771f0da8bc4f1ea0adc8eb65b295/s/master "wercker status")](https://app.wercker.com/project/byKey/8cf8771f0da8bc4f1ea0adc8eb65b295)
 
 A Ruby interface to the [GlobalSign](https://www.globalsign.com/) API.
@@ -62,6 +63,7 @@ contract = GlobalSign::Contract.new(
 )
 
 request = GlobalSign::UrlVerification::Request.new(
+  product_code:           'DV_LOW_URL',   # 'DV_HIGH_URL' or 'DV_LOW_URL'
   order_kind:             'new',   # If you request a new certificate
   validity_period_months: 6,
   csr:                    csr,
@@ -90,6 +92,7 @@ end
 
 # Not need to give the argument 'contract_info'
 request = GlobalSign::UrlVerification::Request.new(
+  product_code:           'DV_LOW_URL',
   order_kind:             'new',
   validity_period_months: 6,
   csr:                    csr,
@@ -101,6 +104,7 @@ And you should give the argument `renewal_target_order_id` .
 
 ```ruby
 request = GlobalSign::UrlVerification::Request.new(
+  product_code:            'DV_LOW_URL',
   order_kind:              'renewal',
   validity_period_months:  6,
   csr:                     csr,
