@@ -26,6 +26,7 @@ describe GlobalSign::Client do
     context 'when received url_verification' do
       let(:url_verification_request) do
         GlobalSign::UrlVerification::Request.new(
+          product_code:           'DV_LOW_URL',
           order_kind:             'new',
           validity_period_months: 6,
           csr:                    'xxxxx',
