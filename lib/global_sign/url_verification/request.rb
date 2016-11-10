@@ -1,7 +1,8 @@
 module GlobalSign
   module UrlVerification
     class Request < GlobalSign::Request
-      def initialize(order_kind:, validity_period_months:, csr:, renewal_target_order_id: nil, contract_info: nil)
+      def initialize(product_code:, order_kind:, validity_period_months:, csr:, renewal_target_order_id: nil, contract_info: nil)
+        @product_code            = product_code
         @order_kind              = order_kind
         @validity_period_months  = validity_period_months
         @csr                     = csr
@@ -24,7 +25,7 @@ module GlobalSign
       def params
         _params = {
           OrderRequestParameter: {
-            ProductCode: 'DV_LOW_URL',
+            ProductCode: @product_code,
             OrderKind:   @order_kind,
             Licenses:    1,
             ValidityPeriod: {

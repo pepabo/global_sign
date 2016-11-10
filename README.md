@@ -63,6 +63,7 @@ contract = GlobalSign::Contract.new(
 )
 
 request = GlobalSign::UrlVerification::Request.new(
+  product_code:           'DV_LOW_URL',   # 'DV_HIGH_URL' or 'DV_LOW_URL'
   order_kind:             'new',   # If you request a new certificate
   validity_period_months: 6,
   csr:                    csr,
@@ -91,6 +92,7 @@ end
 
 # Not need to give the argument 'contract_info'
 request = GlobalSign::UrlVerification::Request.new(
+  product_code:           'DV_LOW_URL',
   order_kind:             'new',
   validity_period_months: 6,
   csr:                    csr,
@@ -102,6 +104,7 @@ And you should give the argument `renewal_target_order_id` .
 
 ```ruby
 request = GlobalSign::UrlVerification::Request.new(
+  product_code:            'DV_LOW_URL',
   order_kind:              'renewal',
   validity_period_months:  6,
   csr:                     csr,

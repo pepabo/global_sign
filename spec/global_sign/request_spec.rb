@@ -12,6 +12,7 @@ describe GlobalSign::Request do
 
   let(:request) do
     GlobalSign::UrlVerification::Request.new(
+      product_code:           'DV_LOW_URL',
       order_kind:             'new',
       validity_period_months: 6,
       csr:                    'xxxxx',

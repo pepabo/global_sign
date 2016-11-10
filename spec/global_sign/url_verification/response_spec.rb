@@ -45,6 +45,7 @@ describe GlobalSign::UrlVerification::Response do
 
       let(:request) do
         GlobalSign::UrlVerification::Request.new(
+          product_code:           'DV_LOW_URL',
           order_kind:             'new',
           validity_period_months: 6,
           csr:                    csr,
@@ -71,6 +72,7 @@ describe GlobalSign::UrlVerification::Response do
 
       let(:request) do
         GlobalSign::UrlVerification::Request.new(
+          product_code:           'DV_LOW_URL',
           order_kind:             'invalid_kind',
           validity_period_months: 6,
           csr:                    csr,
@@ -101,6 +103,7 @@ describe GlobalSign::UrlVerification::Response do
 
       let(:request) do
         GlobalSign::UrlVerification::Request.new(
+          product_code:            'DV_LOW_URL',
           order_kind:              'renewal',
           validity_period_months:  6,
           csr:                     csr,
@@ -128,6 +131,7 @@ describe GlobalSign::UrlVerification::Response do
 
       let(:request) do
         GlobalSign::UrlVerification::Request.new(
+          product_code:            'DV_LOW_URL',
           order_kind:              'renewal',
           validity_period_months:  6,
           csr:                     csr,
