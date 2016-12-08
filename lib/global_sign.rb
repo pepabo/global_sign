@@ -11,6 +11,8 @@ require 'global_sign/order_status'
 require 'global_sign/url_verification'
 require 'global_sign/url_verification_for_issue'
 require 'global_sign/order_getter_by_order_id'
+require 'global_sign/dns_verification'
+require 'global_sign/dns_verification_for_issue'
 
 module GlobalSign
   class << self
