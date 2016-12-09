@@ -6,6 +6,10 @@ module GlobalSign
         CertificatePreview  = '//Response/CertificatePreview'
       end
 
+      def response_header
+        :QueryResponseHeader
+      end
+
       def params
         @params ||= {
           csr_data: detail(@xml.xpath(XPath::CSRData)),

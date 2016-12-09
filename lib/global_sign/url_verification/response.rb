@@ -7,6 +7,10 @@ module GlobalSign
         VERIFICATION_URL_LIST = '//Response/VerificationURLList'
       end
 
+      def response_header
+        :OrderResponseHeader
+      end
+
       def params
         @params ||= {
           order_id:              @xml.xpath(XPath::ORDER_ID).text,

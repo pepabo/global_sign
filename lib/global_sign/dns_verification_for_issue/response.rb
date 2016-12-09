@@ -7,6 +7,10 @@ module GlobalSign
         Server_Certificate = '//Response/DVDNSVerificationForIssue/Fulfillment/ServerCertificate'
       end
 
+      def response_header
+        :OrderResponseHeader
+      end
+
       def params
         @params ||= {
           certificate_info: {

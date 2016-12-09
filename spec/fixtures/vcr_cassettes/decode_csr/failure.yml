@@ -64,7 +64,7 @@ http_interactions:
       - max-age=60
     body:
       encoding: UTF-8
-      string: <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:DecodeCSR xmlns:ns2="https://system.globalsign.com/kb/ws/v1/"><Response><OrderResponseHeader><SuccessCode>-1</SuccessCode><Errors><Error><ErrorCode>-1</ErrorCode><ErrorMessage>Internal system error. Please reexecute what you were doing. If error persists, please contact GlobalSign Support</ErrorMessage></Error></Errors><Timestamp>2016-10-19T12:51:15.596+09:00</Timestamp></OrderResponseHeader><CSRData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/><CertificatePreview xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/></Response></ns2:DecodeCSR></soap:Body></soap:Envelope>
+      string: <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:DecodeCSR xmlns:ns2="https://system.globalsign.com/kb/ws/v1/"><Response><QueryResponseHeader><SuccessCode>-1</SuccessCode><Errors><Error><ErrorCode>-1</ErrorCode><ErrorMessage>Internal system error. Please reexecute what you were doing. If error persists, please contact GlobalSign Support</ErrorMessage></Error></Errors><Timestamp>2016-10-19T12:51:15.596+09:00</Timestamp></QueryResponseHeader><CSRData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/><CertificatePreview xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/></Response></ns2:DecodeCSR></soap:Body></soap:Envelope>
     http_version:
   recorded_at: Wed, 19 Oct 2016 03:57:51 GMT
 recorded_with: VCR 3.0.3

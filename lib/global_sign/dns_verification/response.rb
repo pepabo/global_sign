@@ -7,6 +7,10 @@ module GlobalSign
         VERIFICATION_FQDN_LIST = '//Response/VerificationFQDNList'
       end
 
+      def response_header
+        :OrderResponseHeader
+      end
+
       def params
         @params ||= {
           order_id:               @xml.xpath(XPath::ORDER_ID).text,
