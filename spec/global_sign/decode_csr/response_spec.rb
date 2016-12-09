@@ -25,23 +25,23 @@ describe GlobalSign::DecodeCsr::Response do
 
     it 'response includes decode_csr params' do
       expect(@response.params[:csr_data]).to be_present
-      expect(@response.params[:csr_data][:common_name]).to be_present
-      expect(@response.params[:csr_data][:organization]).to be_present
-      expect(@response.params[:csr_data][:organization_unit]).to be_present
-      expect(@response.params[:csr_data][:locality]).to be_present
-      expect(@response.params[:csr_data][:state]).to be_present
-      expect(@response.params[:csr_data][:country]).to be_present
-      expect(@response.params[:csr_data][:email_address]).to be_present
-      expect(@response.params[:csr_data][:key_length]).to be_present
+      expect(@response.params[:csr_data][:common_name]).not_to be_nil
+      expect(@response.params[:csr_data][:organization]).not_to be_nil
+      expect(@response.params[:csr_data][:organization_unit]).not_to be_nil
+      expect(@response.params[:csr_data][:locality]).not_to be_nil
+      expect(@response.params[:csr_data][:state]).not_to be_nil
+      expect(@response.params[:csr_data][:country]).not_to be_nil
+      expect(@response.params[:csr_data][:email_address]).not_to be_nil
+      expect(@response.params[:csr_data][:key_length]).not_to be_nil
       expect(@response.params[:certificate_preview]).to be_present
-      expect(@response.params[:certificate_preview][:common_name]).to be_present
-      expect(@response.params[:certificate_preview][:organization]).to be_present
-      expect(@response.params[:certificate_preview][:organization_unit]).to be_present
-      expect(@response.params[:certificate_preview][:locality]).to be_present
-      expect(@response.params[:certificate_preview][:state]).to be_present
-      expect(@response.params[:certificate_preview][:country]).to be_present
-      expect(@response.params[:certificate_preview][:email_address]).to be_present
-      expect(@response.params[:certificate_preview][:key_length]).to be_present
+      expect(@response.params[:certificate_preview][:common_name]).not_to be_nil
+      expect(@response.params[:certificate_preview][:organization]).not_to be_nil
+      expect(@response.params[:certificate_preview][:organization_unit]).not_to be_nil
+      expect(@response.params[:certificate_preview][:locality]).not_to be_nil
+      expect(@response.params[:certificate_preview][:state]).not_to be_nil
+      expect(@response.params[:certificate_preview][:country]).not_to be_nil
+      expect(@response.params[:certificate_preview][:email_address]).not_to be_nil
+      expect(@response.params[:certificate_preview][:key_length]).not_to be_nil
     end
   end
 
