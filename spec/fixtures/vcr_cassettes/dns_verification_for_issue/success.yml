@@ -49,7 +49,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: |-
-        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:DVDNSVerificationForIssueResponse xmlns:ns2="https://system.globalsign.com/kb/ws/v1/"><Response><OrderResponseHeader><SuccessCode>0</SuccessCode><Errors/><Timestamp>2016-10-06T14:53:27.191+09:00</Timestamp></OrderResponseHeader><DVDNSVerificationForIssue><CertificateInfo><CertificateStatus>4</CertificateStatus><StartDate>2016-10-06T14:53:23.000+09:00</StartDate><EndDate>2016-11-06T14:53:23.000+09:00</EndDate><CommonName>example.com</CommonName><SubjectName>CN = example.com, O = null, OU = Domain Control Validated, L = null, ST = null, C = JP</SubjectName><DNSNames xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/></CertificateInfo><Fulfillment><CACertificates><CACertificate><CACertType>ROOT</CACertType><CACert>-----BEGIN CERTIFICATE-----&#xD;
+        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:DVDNSVerificationForIssueResponse xmlns:ns2="https://system.globalsign.com/kb/ws/v1/"><Response><OrderResponseHeader><SuccessCode>0</SuccessCode><Errors/><Timestamp>2016-10-06T14:53:27.191+09:00</Timestamp></OrderResponseHeader><URLVerificationForIssue><CertificateInfo><CertificateStatus>4</CertificateStatus><StartDate>2016-10-06T14:53:23.000+09:00</StartDate><EndDate>2016-11-06T14:53:23.000+09:00</EndDate><CommonName>example.com</CommonName><SubjectName>CN = example.com, O = null, OU = Domain Control Validated, L = null, ST = null, C = JP</SubjectName><DNSNames xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/></CertificateInfo><Fulfillment><CACertificates><CACertificate><CACertType>ROOT</CACertType><CACert>-----BEGIN CERTIFICATE-----&#xD;
         aaaaa&#xD;
         -----END CERTIFICATE-----&#xD;
         </CACert></CACertificate><CACertificate><CACertType>INTER</CACertType><CACert>-----BEGIN CERTIFICATE-----&#xD;
@@ -61,7 +61,7 @@ http_interactions:
         </X509Cert><PKCS7Cert>-----BEGIN PKCS7-----
         ddddd&#xD;
         -----END PKCS7-----
-        </PKCS7Cert></ServerCertificate></Fulfillment></DVDNSVerificationForIssue></Response></ns2:DVDNSVerificationForIssueResponse></soap:Body></soap:Envelope>
+        </PKCS7Cert></ServerCertificate></Fulfillment></DVDNSVerificationForIssue></Response></ns2:URLVerificationForIssue></soap:Body></soap:Envelope>
     http_version:
   recorded_at: Thu, 06 Oct 2016 05:53:27 GMT
 recorded_with: VCR 3.0.3

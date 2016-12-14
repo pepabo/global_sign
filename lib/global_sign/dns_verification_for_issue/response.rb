@@ -2,9 +2,9 @@ module GlobalSign
   module DnsVerificationForIssue
     class Response < GlobalSign::Response
       module XPath
-        Certificate_Info   = '//Response/DVDNSVerificationForIssue/CertificateInfo'
-        CA_Certificates    = '//Response/DVDNSVerificationForIssue/Fulfillment/CACertificates'
-        Server_Certificate = '//Response/DVDNSVerificationForIssue/Fulfillment/ServerCertificate'
+        Certificate_Info   = '//Response/URLVerificationForIssue/CertificateInfo'
+        CA_Certificates    = '//Response/URLVerificationForIssue/Fulfillment/CACertificates'
+        Server_Certificate = '//Response/URLVerificationForIssue/Fulfillment/ServerCertificate'
       end
 
       def response_header
