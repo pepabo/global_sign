@@ -1,5 +1,5 @@
 module GlobalSign
-  module DecodeCsr
+  module CsrDecode
     class Request < GlobalSign::Request
       def initialize(csr:, product_type:)
         @csr = csr

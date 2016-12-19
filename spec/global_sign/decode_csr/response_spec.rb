@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe GlobalSign::DecodeCsr::Response do
+describe GlobalSign::CsrDecode::Response do
   let(:client) { GlobalSign::Client.new }
 
   before do
@@ -13,7 +13,7 @@ describe GlobalSign::DecodeCsr::Response do
     let(:cassette_title) { 'success' }
 
     let(:request) do
-      GlobalSign::DecodeCsr::Request.new(csr: example_csr, product_type: 'DV_LOW')
+      GlobalSign::CsrDecode::Request.new(csr: example_csr, product_type: 'DV_LOW')
     end
 
     it 'succeeds' do
@@ -49,7 +49,7 @@ describe GlobalSign::DecodeCsr::Response do
     let(:cassette_title) { 'failure' }
 
     let(:request) do
-      GlobalSign::DecodeCsr::Request.new(csr: example_csr, product_type: 'INVALID')
+      GlobalSign::CsrDecode::Request.new(csr: example_csr, product_type: 'INVALID')
     end
 
     it 'fails' do
