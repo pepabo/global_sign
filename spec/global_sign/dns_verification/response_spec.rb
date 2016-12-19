@@ -11,28 +11,6 @@ describe GlobalSign::DnsVerification::Response do
     )
   end
 
-  let(:csr) do
-    <<-EOS
-    -----BEGIN CERTIFICATE REQUEST-----
-    MIICuDCCAaACAQAwczELMAkGA1UEBhMCSlAxDjAMBgNVBAgTBVRva3lvMRMwEQYD
-    VQQHEwpTaGlidXlhLWt1MRkwFwYDVQQKExBHTU8gUGVwYWJvLCBJbmMuMQowCAYD
-    VQQLEwEtMRgwFgYDVQQDEw93d3cuZXhhbXBsZS5jb20wggEiMA0GCSqGSIb3DQEB
-    AQUAA4IBDwAwggEKAoIBAQCwKGVMbfx6owwrM2bgsWaQvoGCCSuxscq/PyGOMWuW
-    whZ+Q6sPZJNNyb41jE1LgFgD4a3ku8JhdGjsjGVPi+9/OuGK9IISRMTwUsorwHKS
-    C8hV6T2CBEKdayrZZ6695Mc9jLhn6tqLHRql1lAKXwTBbaDsdyftuMo73AhpjVBL
-    4M2c/lsJWaE0K1S1QORckNwZ1FyDYzX04Urz1IdnJ3wF+bRsN1xQUs2QjFlxA4Ot
-    dqqvIN9oY9wVaNEBZMBAcX5bHPgq7s4BnkoyDh4/7HycNmzK2Z6HzcNvfic/Apvf
-    6+jkBJztEeRo7F1XDj8grOczFX1jUasazI+kn6IdMzTvAgMBAAGgADANBgkqhkiG
-    9w0BAQUFAAOCAQEAV66uWDxCpmvqpYU+ISG4kfxv74o1jxLpjrS07Owfvxt0/mik
-    cFHR+nIDCaHKhgOfJIS9xCvMWIkmHyRih/XK9yCUpmbkOKj2704E0O2FUZiNDZ9x
-    02gufWbtYw8s4ReKewejPtQ6L8SY2QgE5kBvEW3W+ZLTK1EE3LsX6eRCabxOVgAJ
-    ehacXTKnkLVndPImstQHq0iKM3ScUuIYpKodM7rVugjTiBt0cKe6dERoTQqWr+gH
-    gUktKs5ENeEWEW4Gepr3XBUTV4ViP29i/pYCMZc294hhx9Y0ggXPceKNBaqeHsYt
-    fTyAz1FGQxpdac76Jp9EO1xnzGCnPp9A3ACneg==
-    -----END CERTIFICATE REQUEST-----
-    EOS
-  end
-
   context 'when requested a new certificate' do
     before do
       VCR.use_cassette('dns_verification/new/' + cassette_title) do
@@ -48,7 +26,7 @@ describe GlobalSign::DnsVerification::Response do
           product_code:           'DV_LOW_DNS',
           order_kind:             'new',
           validity_period_months: 6,
-          csr:                    csr,
+          csr:                    example_csr,
           contract_info:          contract,
         )
       end
@@ -75,7 +53,7 @@ describe GlobalSign::DnsVerification::Response do
           product_code:           'DV_LOW_DNS',
           order_kind:             'invalid_kind',
           validity_period_months: 6,
-          csr:                    csr,
+          csr:                    example_csr,
           contract_info:          contract,
         )
       end
@@ -106,7 +84,7 @@ describe GlobalSign::DnsVerification::Response do
           product_code:            'DV_LOW_DNS',
           order_kind:              'renewal',
           validity_period_months:  6,
-          csr:                     csr,
+          csr:                     example_csr,
           renewal_target_order_id: order_id,
           contract_info:           contract,
         )
@@ -134,7 +112,7 @@ describe GlobalSign::DnsVerification::Response do
           product_code:            'DV_LOW_DNS',
           order_kind:              'renewal',
           validity_period_months:  6,
-          csr:                     csr,
+          csr:                     example_csr,
           renewal_target_order_id: order_id,
           contract_info:           contract,
         )
