@@ -2,7 +2,7 @@ module GlobalSign
   module CsrDecode
     class Request < GlobalSign::Request
       def initialize(csr:, product_type:)
-        @csr = csr
+        @csr          = csr
         @product_type = product_type
       end
 
@@ -20,7 +20,7 @@ module GlobalSign
 
       def params
         {
-          CSR: @csr,
+          CSR:         @csr,
           ProductType: @product_type
         }
       end

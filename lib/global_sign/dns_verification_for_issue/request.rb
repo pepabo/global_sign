@@ -20,7 +20,7 @@ module GlobalSign
 
       def params
         {
-          OrderID:     @order_id,
+          OrderID:      @order_id,
           ApproverFQDN: @approver_fqdn,
         }
       end

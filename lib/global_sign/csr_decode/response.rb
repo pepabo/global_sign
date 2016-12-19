@@ -2,8 +2,8 @@ module GlobalSign
   module CsrDecode
     class Response < GlobalSign::Response
       module XPath
-        CSRData             = '//Response/CSRData'
-        CertificatePreview  = '//Response/CertificatePreview'
+        CSRData            = '//Response/CSRData'
+        CertificatePreview = '//Response/CertificatePreview'
       end
 
       def response_header
@@ -12,7 +12,7 @@ module GlobalSign
 
       def params
         @params ||= {
-          csr_data: detail(@xml.xpath(XPath::CSRData)),
+          csr_data:            detail(@xml.xpath(XPath::CSRData)),
           certificate_preview: detail(@xml.xpath(XPath::CertificatePreview))
         }
       end
