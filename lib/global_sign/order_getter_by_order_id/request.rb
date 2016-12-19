@@ -1,9 +1,8 @@
 module GlobalSign
   module OrderGetterByOrderId
     class Request < GlobalSign::Request
-      def initialize(order_id:, options: nil)
+      def initialize(order_id:)
         @order_id = order_id
-        @options = options
       end
 
       def path
@@ -19,9 +18,7 @@ module GlobalSign
       end
 
       def params
-        _params = { OrderID: @order_id }
-        _params[:OrderQueryOption] = @options if @options
-        _params
+        { OrderID: @order_id }
       end
     end
   end
