@@ -2,7 +2,7 @@ module GlobalSign
   module DnsVerificationForIssue
     class Request < GlobalSign::Request
       def initialize(order_id:, approver_fqdn:)
-        @order_id     = order_id
+        @order_id      = order_id
         @approver_fqdn = approver_fqdn
       end
 
