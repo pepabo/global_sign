@@ -3,7 +3,7 @@ module GlobalSign
     class Request < GlobalSign::Request
       def initialize(order_id:, options: nil)
         @order_id = order_id
-        @options = options
+        @options  = options
       end
 
       def path
