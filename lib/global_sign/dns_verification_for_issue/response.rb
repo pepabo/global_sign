@@ -1,5 +1,5 @@
 module GlobalSign
-  module UrlVerificationForIssue
+  module DnsVerificationForIssue
     class Response < GlobalSign::Response
       module XPath
         Certificate_Info   = '//Response/URLVerificationForIssue/CertificateInfo'
