@@ -22,10 +22,10 @@ module GlobalSign
         _params = { OrderID: @order_id }
 
         # options
-        _option_params = {}
-        _option_params[:ReturnCertificateInfo] = true if @options[:certificate_info]
-        _option_params[:ReturnFulfillment]     = true if @options[:fulfillment]
-        _params[:OrderQueryOption] = _option_params   if _option_params.present?
+        option_params = {}
+        option_params[:ReturnCertificateInfo] = true if @options[:certificate_info]
+        option_params[:ReturnFulfillment]     = true if @options[:fulfillment]
+        _params[:OrderQueryOption] = option_params   if option_params.present?
 
         _params
       end
