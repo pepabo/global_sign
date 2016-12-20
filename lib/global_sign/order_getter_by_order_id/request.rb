@@ -1,7 +1,7 @@
 module GlobalSign
   module OrderGetterByOrderId
     class Request < GlobalSign::Request
-      def initialize(order_id:, options: nil)
+      def initialize(order_id:, options: {})
         @order_id = order_id
         @options  = options
       end
