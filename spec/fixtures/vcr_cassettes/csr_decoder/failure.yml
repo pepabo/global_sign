@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test-gcc.globalsign.com/kb/ws/v1/GASService
+    body:
+      encoding: UTF-8
+      string: |-
+        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns2="https://system.globalsign.com/kb/ws/v1/">
+          <soap:Body>
+            <ns2:DecodeCSR>
+              <Request>
+                <QueryRequestHeader>
+                  <AuthToken>
+                    <UserName>[USER_NAME]</UserName>
+                    <Password>[PASSWORD]</Password>
+                  </AuthToken>
+                  <CSR>-----BEGIN CERTIFICATE REQUEST-----
+        MIICuDCCAaACAQAwczELMAkGA1UEBhMCSlAxDjAMBgNVBAgTBVRva3lvMRMwEQYD
+        VQQHEwpTaGlidXlhLWt1MRkwFwYDVQQKExBHTU8gUGVwYWJvLCBJbmMuMQowCAYD
+        VQQLEwEtMRgwFgYDVQQDEw93d3cuZXhhbXBsZS5jb20wggEiMA0GCSqGSIb3DQEB
+        AQUAA4IBDwAwggEKAoIBAQCwKGVMbfx6owwrM2bgsWaQvoGCCSuxscq/PyGOMWuW
+        whZ+Q6sPZJNNyb41jE1LgFgD4a3ku8JhdGjsjGVPi+9/OuGK9IISRMTwUsorwHKS
+        C8hV6T2CBEKdayrZZ6695Mc9jLhn6tqLHRql1lAKXwTBbaDsdyftuMo73AhpjVBL
+        4M2c/lsJWaE0K1S1QORckNwZ1FyDYzX04Urz1IdnJ3wF+bRsN1xQUs2QjFlxA4Ot
+        dqqvIN9oY9wVaNEBZMBAcX5bHPgq7s4BnkoyDh4/7HycNmzK2Z6HzcNvfic/Apvf
+        6+jkBJztEeRo7F1XDj8grOczFX1jUasazI+kn6IdMzTvAgMBAAGgADANBgkqhkiG
+        9w0BAQUFAAOCAQEAV66uWDxCpmvqpYU+ISG4kfxv74o1jxLpjrS07Owfvxt0/mik
+        cFHR+nIDCaHKhgOfJIS9xCvMWIkmHyRih/XK9yCUpmbkOKj2704E0O2FUZiNDZ9x
+        02gufWbtYw8s4ReKewejPtQ6L8SY2QgE5kBvEW3W+ZLTK1EE3LsX6eRCabxOVgAJ
+        ehacXTKnkLVndPImstQHq0iKM3ScUuIYpKodM7rVugjTiBt0cKe6dERoTQqWr+gH
+        gUktKs5ENeEWEW4Gepr3XBUTV4ViP29i/pYCMZc294hhx9Y0ggXPceKNBaqeHsYt
+        fTyAz1FGQxpdac76Jp9EO1xnzGCnPp9A3ACneg==
+        -----END CERTIFICATE REQUEST-----</CSR>
+                  <ProductType>INVALID</ProductType>
+                </QueryRequestHeader>
+              </Request>
+            </ns2:DecodeCSR>
+          </soap:Body>
+        </soap:Envelope>
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Content-Type:
+      - text/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 19 Oct 2016 03:57:51 GMT
+      Set-Cookie:
+      - JSESSIONID=AC607804400D5B880A0124555EC2E45E; Path=/kb
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '730'
+      Strict-Transport-Security:
+      - max-age=60
+    body:
+      encoding: UTF-8
+      string: <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><ns2:DecodeCSR xmlns:ns2="https://system.globalsign.com/kb/ws/v1/"><Response><QueryResponseHeader><SuccessCode>-1</SuccessCode><Errors><Error><ErrorCode>-1</ErrorCode><ErrorMessage>Internal system error. Please reexecute what you were doing. If error persists, please contact GlobalSign Support</ErrorMessage></Error></Errors><Timestamp>2016-10-19T12:51:15.596+09:00</Timestamp></QueryResponseHeader><CSRData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/><CertificatePreview xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/></Response></ns2:DecodeCSR></soap:Body></soap:Envelope>
+    http_version:
+  recorded_at: Wed, 19 Oct 2016 03:57:51 GMT
+recorded_with: VCR 3.0.3

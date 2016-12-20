@@ -13,6 +13,10 @@ module GlobalSign
         SERVER_CERTIFICATE  = '//Response/OrderDetail/Fulfillment/ServerCertificate'
       end
 
+      def response_header
+        :OrderResponseHeader
+      end
+
       def params
         return @params if @params
         _params = {

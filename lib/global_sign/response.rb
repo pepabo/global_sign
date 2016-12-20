@@ -5,21 +5,24 @@ module GlobalSign
     SUCCESS_CODE = '0'.freeze
     WARNING_CODE = '1'.freeze
 
-    module XPath
-      RESULT = '//Response/OrderResponseHeader/SuccessCode'
-      ERRORS = '//Response/OrderResponseHeader/Errors'
-    end
-
     def initialize(body)
       @xml = Nokogiri::XML(body)
     end
 
+    def xpath_result
+      "//Response/#{response_header}/SuccessCode"
+    end
+
+    def xpath_errors
+      "//Response/#{response_header}/Errors"
+    end
+
     def success?
-      @xml.xpath(XPath::RESULT).text == SUCCESS_CODE
+      @xml.xpath(xpath_result).text == SUCCESS_CODE
     end
 
     def warning?
-      @xml.xpath(XPath::RESULT).text == WARNING_CODE
+      @xml.xpath(xpath_result).text == WARNING_CODE
     end
 
     def error?
@@ -41,7 +44,7 @@ module GlobalSign
     private
 
     def errors
-      @xml.xpath(XPath::ERRORS)
+      @xml.xpath(xpath_errors)
     end
   end
 end

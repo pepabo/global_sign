@@ -25,6 +25,12 @@ module GlobalSign
 
     def find_response_class_for(request)
       case request
+      when GlobalSign::CsrDecoder::Request
+        GlobalSign::CsrDecoder::Response
+      when GlobalSign::DnsVerification::Request
+        GlobalSign::DnsVerification::Response
+      when GlobalSign::DnsVerificationForIssue::Request
+        GlobalSign::DnsVerificationForIssue::Response
       when GlobalSign::UrlVerification::Request
         GlobalSign::UrlVerification::Response
       when GlobalSign::UrlVerificationForIssue::Request
