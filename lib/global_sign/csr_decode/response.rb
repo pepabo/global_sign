@@ -1,5 +1,5 @@
 module GlobalSign
-  module CsrDecode
+  module CsrDecoder
     class Response < GlobalSign::Response
       module XPath
         CSRData            = '//Response/CSRData'
