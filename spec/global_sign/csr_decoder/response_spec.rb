@@ -4,7 +4,7 @@ describe GlobalSign::CsrDecoder::Response do
   let(:client) { GlobalSign::Client.new }
 
   before do
-    VCR.use_cassette('decode_csr/' + cassette_title) do
+    VCR.use_cassette('csr_decoder/' + cassette_title) do
       @response = client.process(request)
     end
   end
