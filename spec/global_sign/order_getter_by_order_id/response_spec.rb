@@ -56,7 +56,7 @@ describe GlobalSign::OrderGetterByOrderId::Response do
     it_behaves_like 'succeeds'
     it_behaves_like 'response includes order_getter_by_order_id params'
 
-    it 'response includes order_getter_by_order_id params' do
+    it 'response with options params' do
       expect(@response.params[:certificate_info]).to be_present
       expect(@response.params[:fulfillment]).to be_nil
     end
@@ -76,7 +76,7 @@ describe GlobalSign::OrderGetterByOrderId::Response do
     it_behaves_like 'succeeds'
     it_behaves_like 'response includes order_getter_by_order_id params'
 
-    it 'response includes order_getter_by_order_id params' do
+    it 'response with options params' do
       expect(@response.params[:certificate_info]).to be_nil
       expect(@response.params[:fulfillment]).to be_present
     end
