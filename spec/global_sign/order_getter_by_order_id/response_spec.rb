@@ -15,14 +15,12 @@ describe GlobalSign::OrderGetterByOrderId::Response do
       expect(@response.error_code).to be_nil
       expect(@response.error_field).to be_nil
       expect(@response.error_message).to be_nil
-    end
-  end
 
-  shared_examples_for 'response includes order_getter_by_order_id params' do
-    it do
       expect(@response.params[:order_id]).to be_present
       expect(@response.params[:order_status]).to be_present
       expect(@response.params[:modification_events]).to be_present
+
+      expect(@response.order_status_text).to eq('initial')
     end
   end
 
@@ -34,15 +32,10 @@ describe GlobalSign::OrderGetterByOrderId::Response do
     end
 
     it_behaves_like 'succeeds'
-    it_behaves_like 'response includes order_getter_by_order_id params'
 
-    it 'response with options params' do
+    it 'not exists option responses' do
       expect(@response.params[:certificate_info]).to be_nil
       expect(@response.params[:fulfillment]).to be_nil
-    end
-
-    it 'returns order_status text' do
-      expect(@response.order_status_text).to eq('initial')
     end
   end
 
@@ -54,15 +47,10 @@ describe GlobalSign::OrderGetterByOrderId::Response do
     end
 
     it_behaves_like 'succeeds'
-    it_behaves_like 'response includes order_getter_by_order_id params'
 
-    it 'response with options params' do
+    it 'exists certificate_info option response' do
       expect(@response.params[:certificate_info]).to be_present
       expect(@response.params[:fulfillment]).to be_nil
-    end
-
-    it 'returns order_status text' do
-      expect(@response.order_status_text).to eq('completed_issue')
     end
   end
 
@@ -74,15 +62,10 @@ describe GlobalSign::OrderGetterByOrderId::Response do
     end
 
     it_behaves_like 'succeeds'
-    it_behaves_like 'response includes order_getter_by_order_id params'
 
-    it 'response with options params' do
+    it 'exists fulfillment option response' do
       expect(@response.params[:certificate_info]).to be_nil
       expect(@response.params[:fulfillment]).to be_present
-    end
-
-    it 'returns order_status text' do
-      expect(@response.order_status_text).to eq('completed_issue')
     end
   end
 
