@@ -15,15 +15,15 @@ describe GlobalSign::OrderGetterByOrderId::Response do
       expect(@response.error_code).to be_nil
       expect(@response.error_field).to be_nil
       expect(@response.error_message).to be_nil
+    end
 
+    it 'response includes order_getter_by_order_id params' do
       expect(@response.params[:order_id]).to be_present
       expect(@response.params[:order_status]).to be_present
       expect(@response.params[:modification_events]).to be_present
     end
-  end
 
-  shared_examples_for 'returns order_status text' do
-    it do
+    it 'returns order_status text' do
       expect(@response.order_status_text).to eq(order_status)
     end
   end
@@ -37,7 +37,6 @@ describe GlobalSign::OrderGetterByOrderId::Response do
     end
 
     it_behaves_like 'succeeds'
-    it_behaves_like 'returns order_status text'
 
     it 'not exists option responses' do
       expect(@response.params[:certificate_info]).to be_nil
@@ -54,7 +53,6 @@ describe GlobalSign::OrderGetterByOrderId::Response do
     end
 
     it_behaves_like 'succeeds'
-    it_behaves_like 'returns order_status text'
 
     it 'exists certificate_info option response' do
       expect(@response.params[:certificate_info]).to be_present
@@ -71,7 +69,6 @@ describe GlobalSign::OrderGetterByOrderId::Response do
     end
 
     it_behaves_like 'succeeds'
-    it_behaves_like 'returns order_status text'
 
     it 'exists fulfillment option response' do
       expect(@response.params[:certificate_info]).to be_nil
