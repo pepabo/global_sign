@@ -113,6 +113,31 @@ request = GlobalSign::UrlVerification::Request.new(
 )
 ```
 
+### DNS Verification
+
+Verification flow is the same as URL Verification. Request class use the following:
+
+```ruby
+client = GlobalSign::Client.new
+
+request = GlobalSign::DnsVerification::Request.new(
+  product_code:           'DV_LOW_DNS',
+  order_kind:             'new',
+  validity_period_months: 6,
+  csr:                    csr,
+  contract_info:          contract,
+)
+
+response = client.process(request)
+
+if response.success?
+  puts "Successfully DNS Verification"
+  puts response.params # => { dns_txt: "xxxxx", verification_fqdn_list: ['example.com', 'www.example.com'], ... }
+else
+  raise StandardError, "#{response.error_code}: #{response.error_message}"
+end
+```
+
 ### URL Verification for Issue
 
 ```ruby
@@ -139,16 +164,76 @@ else
 end
 ```
 
+### DNS Verification for Issue
+
+```ruby
+client = GlobalSign::Client.new
+
+# You can use ApproverFQDN value such as:
+# - www.example.com
+# - example.com
+
+request = GlobalSign::UrlVerificationForIssue::Request.new(
+  order_id:      'xxxx123456789',
+  approver_fqdn: 'www.example.com',
+)
+
+response = client.process(request)
+
+if response.success?
+  puts "Successfully DNS Verification for Issue"
+  puts response.params # => { fulfillment: { ca_certificates: [{ ca_cert: "xxxxx" }, ...]}, ... }
+else
+  raise StandardError, "#{response.error_code}: #{response.error_message}"
+end
+```
+
 ### Get Order by OrderID
 
 ```ruby
-request = GlobalSign::OrderGetterByOrderId::Request.new(order_id: 'xxxx123456789')
+request = GlobalSign::OrderGetterByOrderId::Request.new(
+  order_id: 'xxxx123456789'
+)
 response = client.process(request)
 
 puts response.params # => { order_id: "xxxx123456789", order_status: "2", ... }
 
 # You can get order_status explanation
 puts response.order_status_text  # => "phishing_checking"
+```
+
+You can specify request options.
+
+```ruby
+# certificate_info option
+request = GlobalSign::OrderGetterByOrderId::Request.new(
+  order_id: 'xxxx123456789',
+  options:  { certificate_info: true }
+)
+response = client.process(request)
+
+puts response.params[:certificate_info] # => { certificate_status: '4', start_date: '2016-10-06T14:53:23.000+09:00', ... }
+
+# fulfillment option
+request = GlobalSign::OrderGetterByOrderId::Request.new(
+  order_id: 'xxxx123456789',
+  options:  { fulfillment: true }
+)
+response = client.process(request)
+
+puts response.params[:fulfillment] # => { ca_certificates: [{ ca_cert: "xxxxx" }, ...]}
+```
+
+### Decode CSR
+
+```ruby
+request = GlobalSign::CsrDecoder::Request.new(
+  product_type: 'DV_LOW',
+  csr:          csr
+)
+response = client.process(request)
+
+puts response.params # => { common_name: "www.example.com", ... }
 ```
 
 ## Contributing
