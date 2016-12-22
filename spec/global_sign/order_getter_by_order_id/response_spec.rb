@@ -19,19 +19,25 @@ describe GlobalSign::OrderGetterByOrderId::Response do
       expect(@response.params[:order_id]).to be_present
       expect(@response.params[:order_status]).to be_present
       expect(@response.params[:modification_events]).to be_present
+    end
+  end
 
-      expect(@response.order_status_text).to eq('initial')
+  shared_examples_for 'returns order_status text' do
+    it do
+      expect(@response.order_status_text).to eq(order_status)
     end
   end
 
   context 'when returned success response' do
     let(:cassette_title) { 'success' }
+    let(:order_status) { 'initial' }
 
     let(:request) do
       GlobalSign::OrderGetterByOrderId::Request.new(order_id: 'xxxx123456789')
     end
 
     it_behaves_like 'succeeds'
+    it_behaves_like 'returns order_status text'
 
     it 'not exists option responses' do
       expect(@response.params[:certificate_info]).to be_nil
@@ -41,12 +47,14 @@ describe GlobalSign::OrderGetterByOrderId::Response do
 
   context 'when returned success response with certificate_info option' do
     let(:cassette_title) { 'with_certificate_info' }
+    let(:order_status) { 'completed_issue' }
 
     let(:request) do
       GlobalSign::OrderGetterByOrderId::Request.new(order_id: 'xxxx123456789', options: {certificate_info: true})
     end
 
     it_behaves_like 'succeeds'
+    it_behaves_like 'returns order_status text'
 
     it 'exists certificate_info option response' do
       expect(@response.params[:certificate_info]).to be_present
@@ -56,12 +64,14 @@ describe GlobalSign::OrderGetterByOrderId::Response do
 
   context 'when returned success response with fulfillment option' do
     let(:cassette_title) { 'with_fulfillment' }
+    let(:order_status) { 'completed_issue' }
 
     let(:request) do
       GlobalSign::OrderGetterByOrderId::Request.new(order_id: 'xxxx123456789', options: {fulfillment: true})
     end
 
     it_behaves_like 'succeeds'
+    it_behaves_like 'returns order_status text'
 
     it 'exists fulfillment option response' do
       expect(@response.params[:certificate_info]).to be_nil
