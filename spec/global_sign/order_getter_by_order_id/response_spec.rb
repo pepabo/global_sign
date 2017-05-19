@@ -45,13 +45,13 @@ describe GlobalSign::OrderGetterByOrderId::Response do
   end
 
   context 'when returned success response with certificate_info option' do
+    let(:request) do
+      GlobalSign::OrderGetterByOrderId::Request.new(order_id: 'xxxx123456789', options: {certificate_info: true})
+    end
+
     context 'when order_status completed_issue' do
       let(:cassette_title) { 'with_certificate_info' }
       let(:order_status) { 'completed_issue' }
-
-      let(:request) do
-        GlobalSign::OrderGetterByOrderId::Request.new(order_id: 'xxxx123456789', options: {certificate_info: true})
-      end
 
       it_behaves_like 'succeeds'
 
@@ -64,10 +64,6 @@ describe GlobalSign::OrderGetterByOrderId::Response do
     context 'when order_status initial' do
       let(:cassette_title) { 'with_certificate_info_order_status_initial' }
       let(:order_status) { 'initial' }
-
-      let(:request) do
-        GlobalSign::OrderGetterByOrderId::Request.new(order_id: 'xxxx123456789', options: {certificate_info: true})
-      end
 
       it_behaves_like 'succeeds'
 
