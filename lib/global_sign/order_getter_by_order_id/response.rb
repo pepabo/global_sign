@@ -37,8 +37,8 @@ module GlobalSign
         _params[:fulfillment] = {
             ca_certificates: ca_certificates_list,
             server_certificate: {
-              x509_cert:  server_certificate.at('X509Cert').text,
-              pkcs7_cert: server_certificate.at('PKCS7Cert').text,
+                x509_cert:  server_certificate.at('X509Cert').text,
+                pkcs7_cert: server_certificate.at('PKCS7Cert').text,
             }
         } if fulfillment.text.present?
 
