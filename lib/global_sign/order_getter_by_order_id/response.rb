@@ -28,18 +28,18 @@ module GlobalSign
         # options
         _params[:certificate_info] = {
           certificate_status: certificate_info.at('CertificateStatus').text,
-          start_date:         certificate_info.at('StartDate').text,
-          end_date:           certificate_info.at('EndDate').text,
           common_name:        certificate_info.at('CommonName').text,
-          subject_name:       certificate_info.at('SubjectName').text,
+          start_date:         certificate_info.at('StartDate').try(:text),
+          end_date:           certificate_info.at('EndDate').try(:text),
+          subject_name:       certificate_info.at('SubjectName').try(:text),
         } if certificate_info.text.present?
 
         _params[:fulfillment] = {
-            ca_certificates: ca_certificates_list,
-            server_certificate: {
-              x509_cert:  server_certificate.at('X509Cert').text,
-              pkcs7_cert: server_certificate.at('PKCS7Cert').text,
-            }
+          ca_certificates: ca_certificates_list,
+          server_certificate: {
+            x509_cert:  server_certificate.at('X509Cert').text,
+            pkcs7_cert: server_certificate.at('PKCS7Cert').text,
+          }
         } if fulfillment.text.present?
 
         @params = _params
