@@ -1,5 +1,5 @@
-## 2.1.0
-− bug fix `GlobalSign::OrderGetterByOrderId::Request` NoMethodError: undefined method `text' for nil:NilClass
+## 2.1.1
+- Fixed bug: `GlobalSign::OrderGetterByOrderId::Request` NoMethodError: undefined method `text' for nil:NilClass
 
 ## 2.1.0
 
