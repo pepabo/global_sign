@@ -45,18 +45,39 @@ describe GlobalSign::OrderGetterByOrderId::Response do
   end
 
   context 'when returned success response with certificate_info option' do
-    let(:cassette_title) { 'with_certificate_info' }
-    let(:order_status) { 'completed_issue' }
+    context 'when order_status completed_issue' do
+      let(:cassette_title) { 'with_certificate_info' }
+      let(:order_status) { 'completed_issue' }
 
-    let(:request) do
-      GlobalSign::OrderGetterByOrderId::Request.new(order_id: 'xxxx123456789', options: {certificate_info: true})
+      let(:request) do
+        GlobalSign::OrderGetterByOrderId::Request.new(order_id: 'xxxx123456789', options: {certificate_info: true})
+      end
+
+      it_behaves_like 'succeeds'
+
+      it 'exists certificate_info option response' do
+        expect(@response.params[:certificate_info]).to be_present
+        expect(@response.params[:fulfillment]).to be_nil
+      end
     end
 
-    it_behaves_like 'succeeds'
+    context 'when order_status initial' do
+      let(:cassette_title) { 'with_certificate_info_order_status_initial' }
+      let(:order_status) { 'initial' }
 
-    it 'exists certificate_info option response' do
-      expect(@response.params[:certificate_info]).to be_present
-      expect(@response.params[:fulfillment]).to be_nil
+      let(:request) do
+        GlobalSign::OrderGetterByOrderId::Request.new(order_id: 'xxxx123456789', options: {certificate_info: true})
+      end
+
+      it_behaves_like 'succeeds'
+
+      it 'exists certificate_info option response' do
+        expect(@response.params[:certificate_info]).to be_present
+      end
+
+      it 'start_date is nil' do
+        expect(@response.params[:certificate_info][:start_date]).to be_nil
+      end
     end
   end
 
