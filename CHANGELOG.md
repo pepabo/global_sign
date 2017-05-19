@@ -1,4 +1,7 @@
 ## 2.1.0
+− bug fix `GlobalSign::OrderGetterByOrderId::Request` NoMethodError: undefined method `text' for nil:NilClass
+
+## 2.1.0
 
 - Support GlobalSign API: DecodeCSR
 - Support GlobalSign API: DVDNSOrder & DVDNSVerificationForIssue
