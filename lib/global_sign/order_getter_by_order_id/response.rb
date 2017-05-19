@@ -29,9 +29,9 @@ module GlobalSign
         _params[:certificate_info] = {
             certificate_status: certificate_info.at('CertificateStatus').text,
             common_name:        certificate_info.at('CommonName').text,
-            start_date:         (certificate_info.at('StartDate').text  if certificate_info.at('StartDate').present?),
-            end_date:           (certificate_info.at('EndDate').text  if certificate_info.at('EndDate').present?),
-            subject_name:       (certificate_info.at('SubjectName').text if certificate_info.at('SubjectName').present?),
+            start_date:         certificate_info.at('StartDate').try(:text),
+            end_date:           certificate_info.at('EndDate').try(:text),
+            subject_name:       certificate_info.at('SubjectName').try(:text),
         } if certificate_info.text.present?
 
         _params[:fulfillment] = {
