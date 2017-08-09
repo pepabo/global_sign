@@ -37,6 +37,8 @@ module GlobalSign
         GlobalSign::UrlVerificationForIssue::Response
       when GlobalSign::OrderGetterByOrderId::Request
         GlobalSign::OrderGetterByOrderId::Response
+      when GlobalSign::GetDVApproverList::Request
+        GlobalSign::GetDVApproverList::Response
       else
         raise ArgumentError, 'invalid request argument'
       end

@@ -14,6 +14,7 @@ require 'global_sign/order_getter_by_order_id'
 require 'global_sign/csr_decoder'
 require 'global_sign/dns_verification'
 require 'global_sign/dns_verification_for_issue'
+require 'global_sign/get_dv_approver_list'
 
 module GlobalSign
   class << self
