@@ -39,6 +39,8 @@ module GlobalSign
         GlobalSign::OrderGetterByOrderId::Response
       when GlobalSign::GetDVApproverList::Request
         GlobalSign::GetDVApproverList::Response
+      when GlobalSign::DVOrder::Request
+        GlobalSign::DVOrder::Response
       else
         raise ArgumentError, 'invalid request argument'
       end
