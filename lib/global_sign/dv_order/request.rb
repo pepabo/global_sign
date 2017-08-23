@@ -3,9 +3,7 @@ module GlobalSign
     class Request < GlobalSign::Request
       KIND_RENEWAL = 'renewal'.freeze
 
-      def initialize(product_code:, order_kind:, validity_period_months:,
-                     csr:, approver_email:, order_id:,
-                     renewal_target_order_id: nil, contract_info: nil)
+      def initialize(product_code:, order_kind:, validity_period_months:, csr:, approver_email:, order_id:, renewal_target_order_id: nil, contract_info: nil)
         @product_code            = product_code
         @order_kind              = order_kind
         @validity_period_months  = validity_period_months

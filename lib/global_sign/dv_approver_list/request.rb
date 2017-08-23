@@ -1,5 +1,5 @@
 module GlobalSign
-  module GetDVApproverList
+  module DVApproverList
     class Request < GlobalSign::Request
       def initialize(fqdn)
         @fqdn = fqdn

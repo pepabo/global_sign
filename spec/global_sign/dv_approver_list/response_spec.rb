@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe GlobalSign::GetDVApproverList::Response do
+describe GlobalSign::DVApproverList::Response do
   let(:client) { GlobalSign::Client.new }
   let(:contract) do
     GlobalSign::Contract.new(
@@ -14,10 +14,10 @@ describe GlobalSign::GetDVApproverList::Response do
     /admin|administrator|hostmaster|postmaster|webmaster/
   end
 
-  subject { GlobalSign::GetDVApproverList::Request.new(url) }
+  subject { GlobalSign::DVApproverList::Request.new(url) }
 
   before do
-    VCR.use_cassette('get_dv_approver_list/' + cassette_title) do
+    VCR.use_cassette('dv_approver_list/' + cassette_title) do
       @response = client.process(subject)
     end
   end

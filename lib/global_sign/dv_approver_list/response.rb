@@ -1,5 +1,5 @@
 module GlobalSign
-  module GetDVApproverList
+  module DVApproverList
     class Response < GlobalSign::Response
       module XPath
         ORDER_ID = '//Response/OrderID'.freeze
