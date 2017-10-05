@@ -19,5 +19,15 @@ module GlobalSign
         }
       }
     end
+
+    def response_class
+      class_namespace::Response
+    end
+
+    private
+
+    def class_namespace
+      self.class.to_s.deconstantize.constantize
+    end
   end
 end
