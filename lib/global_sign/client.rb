@@ -2,12 +2,13 @@ require 'faraday'
 
 module GlobalSign
   class Client
-    def initialize
+    def initialize(options: {})
       @configuration = GlobalSign.configuration
 
       @connection = Faraday::Connection.new(url: @configuration.endpoint) do |conn|
         conn.request :url_encoded
         conn.adapter Faraday.default_adapter
+        conn.options[:timeout] = options[:timeout] if options[:timeout].present?
       end
     end
 

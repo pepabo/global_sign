@@ -8,6 +8,18 @@ describe GlobalSign::Client do
       expect(client.instance_variable_get(:@configuration)).to be_a(GlobalSign::Configuration)
       expect(client.instance_variable_get(:@connection)).to be_a(Faraday::Connection)
     end
+
+    context 'with "options" parameter' do
+      context 'when timeout is specified' do
+        let(:client) do
+          GlobalSign::Client.new(options: {timeout: 999})
+        end
+
+        it 'sets the value as a request option default' do
+          expect(client.instance_variable_get(:@connection).options.timeout).to eq 999
+        end
+      end
+    end
   end
 
   describe '#process' do
