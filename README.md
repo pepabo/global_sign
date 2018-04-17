@@ -236,6 +236,15 @@ response = client.process(request)
 puts response.params # => { common_name: "www.example.com", ... }
 ```
 
+### Client options
+
+`GlobalSign::Client` allows `options` argument in order to specify its behavior.  
+For now, it supports `timeout` which specifies number of seconds to wait for request.
+
+```ruby
+client = GlobalSign::Client.new(options: { timeout: 120 })
+```
+
 ## Contributing
 
 1. Create your feature branch (git checkout -b my-new-feature)
