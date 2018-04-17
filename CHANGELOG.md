@@ -1,3 +1,8 @@
+## 2.2.0
+
+- Added `options` optional keyword argument to `GlobalSign::Client`
+  - It supports `timeout` which specifies number of seconds to wait for request
+
 ## 2.1.1
 - Fixed bug: `GlobalSign::OrderGetterByOrderId::Request` NoMethodError: undefined method `text` for nil:NilClass
 
