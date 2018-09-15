@@ -3,6 +3,9 @@ require 'active_support/core_ext/hash/conversions'
 require 'global_sign/version'
 require 'global_sign/client'
 require 'global_sign/contract'
+require 'global_sign/organization_address'
+require 'global_sign/organization_info'
+require 'global_sign/organization_info/credit_agency'
 require 'global_sign/request_xml_builder'
 require 'global_sign/request'
 require 'global_sign/response'
@@ -16,6 +19,7 @@ require 'global_sign/dns_verification'
 require 'global_sign/dns_verification_for_issue'
 require 'global_sign/dv_approver_list'
 require 'global_sign/dv_order'
+require 'global_sign/ov_order'
 
 module GlobalSign
   class << self
