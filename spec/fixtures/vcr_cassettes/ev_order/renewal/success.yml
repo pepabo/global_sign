@@ -1,0 +1,147 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test-gcc.globalsign.com/kb/ws/v1/ServerSSLService
+    body:
+      encoding: UTF-8
+      string: |-
+        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns2="https://system.globalsign.com/kb/ws/v1/">
+          <soap:Body>
+            <ns2:EVOrder>
+              <Request>
+                <OrderRequestHeader>
+                  <AuthToken>
+                    <UserName>[USER_NAME]</UserName>
+                    <Password>[PASSWORD]</Password>
+                  </AuthToken>
+                </OrderRequestHeader>
+                <OrderRequestParameter>
+                  <ProductCode>EV</ProductCode>
+                  <OrderKind>renewal</OrderKind>
+                  <Licenses type="integer">1</Licenses>
+                  <ValidityPeriod>
+                    <Months type="integer">12</Months>
+                  </ValidityPeriod>
+                  <CSR>-----BEGIN CERTIFICATE REQUEST-----
+        MIICuDCCAaACAQAwczELMAkGA1UEBhMCSlAxDjAMBgNVBAgTBVRva3lvMRMwEQYD
+        VQQHEwpTaGlidXlhLWt1MRkwFwYDVQQKExBHTU8gUGVwYWJvLCBJbmMuMQowCAYD
+        VQQLEwEtMRgwFgYDVQQDEw93d3cuZXhhbXBsZS5jb20wggEiMA0GCSqGSIb3DQEB
+        AQUAA4IBDwAwggEKAoIBAQCwKGVMbfx6owwrM2bgsWaQvoGCCSuxscq/PyGOMWuW
+        whZ+Q6sPZJNNyb41jE1LgFgD4a3ku8JhdGjsjGVPi+9/OuGK9IISRMTwUsorwHKS
+        C8hV6T2CBEKdayrZZ6695Mc9jLhn6tqLHRql1lAKXwTBbaDsdyftuMo73AhpjVBL
+        4M2c/lsJWaE0K1S1QORckNwZ1FyDYzX04Urz1IdnJ3wF+bRsN1xQUs2QjFlxA4Ot
+        dqqvIN9oY9wVaNEBZMBAcX5bHPgq7s4BnkoyDh4/7HycNmzK2Z6HzcNvfic/Apvf
+        6+jkBJztEeRo7F1XDj8grOczFX1jUasazI+kn6IdMzTvAgMBAAGgADANBgkqhkiG
+        9w0BAQUFAAOCAQEAV66uWDxCpmvqpYU+ISG4kfxv74o1jxLpjrS07Owfvxt0/mik
+        cFHR+nIDCaHKhgOfJIS9xCvMWIkmHyRih/XK9yCUpmbkOKj2704E0O2FUZiNDZ9x
+        02gufWbtYw8s4ReKewejPtQ6L8SY2QgE5kBvEW3W+ZLTK1EE3LsX6eRCabxOVgAJ
+        ehacXTKnkLVndPImstQHq0iKM3ScUuIYpKodM7rVugjTiBt0cKe6dERoTQqWr+gH
+        gUktKs5ENeEWEW4Gepr3XBUTV4ViP29i/pYCMZc294hhx9Y0ggXPceKNBaqeHsYt
+        fTyAz1FGQxpdac76Jp9EO1xnzGCnPp9A3ACneg==
+        -----END CERTIFICATE REQUEST-----</CSR>
+                  <RenewalTargetOrderID>xxxx123456789</RenewalTargetOrderID>
+                </OrderRequestParameter>
+                <OrganizationInfoEV>
+                  <CreditAgency nil="true"/>
+                  <OrganizationCode>123456789</OrganizationCode>
+                  <BusinessAssumedName nil="true"/>
+                  <BusinessCategoryCode>PO</BusinessCategoryCode>
+                  <OrganizationAddress>
+                    <AddressLine1>26-1</AddressLine1>
+                    <AddressLine2 nil="true"/>
+                    <AddressLine3 nil="true"/>
+                    <City>Shibuya</City>
+                    <Region>Tokyo</Region>
+                    <PostalCode>150-0031</PostalCode>
+                    <Country>JP</Country>
+                    <Phone>090-1234-5678</Phone>
+                    <Fax nil="true"/>
+                  </OrganizationAddress>
+                </OrganizationInfoEV>
+                <RequestorInfo>
+                  <FirstName>Example</FirstName>
+                  <LastName>Requestor</LastName>
+                  <Function nil="true"/>
+                  <OrganizationName>CompanyName, Inc.</OrganizationName>
+                  <OrganizationUnit nil="true"/>
+                  <Phone>090-1234-5678</Phone>
+                  <Email>requestor@example.com</Email>
+                </RequestorInfo>
+                <ApproverInfo>
+                  <FirstName>Example</FirstName>
+                  <LastName>Approver</LastName>
+                  <Function nil="true"/>
+                  <OrganizationName>CompanyName, Inc.</OrganizationName>
+                  <OrganizationUnit nil="true"/>
+                  <Phone>090-1234-5678</Phone>
+                  <Email>approver@example.com</Email>
+                </ApproverInfo>
+                <AuthorizedSignerInfo>
+                  <FirstName>Example</FirstName>
+                  <LastName>AuthorizedSigner</LastName>
+                  <Function nil="true"/>
+                  <OrganizationName>CompanyName, Inc.</OrganizationName>
+                  <Phone>090-1234-5678</Phone>
+                  <Email>authorized_signer@example.com</Email>
+                </AuthorizedSignerInfo>
+                <JurisdictionInfo>
+                  <JurisdictionCountry>JP</JurisdictionCountry>
+                  <StateOrProvince>Tokyo</StateOrProvince>
+                  <Locality>Shibuya</Locality>
+                  <IncorporatingAgencyRegistrationNumber>1234-12-123456</IncorporatingAgencyRegistrationNumber>
+                </JurisdictionInfo>
+                <ContactInfo>
+                  <FirstName>Example</FirstName>
+                  <LastName>Taro</LastName>
+                  <Phone>090-1234-5678</Phone>
+                  <Email>taro@example.com</Email>
+                </ContactInfo>
+              </Request>
+            </ns2:EVOrder>
+          </soap:Body>
+        </soap:Envelope>
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Content-Type:
+      - text/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 10 Aug 2017 19:18:18 GMT
+      Set-Cookie:
+      - JSESSIONID=21E696DF23D5442849A720E0169A068E; Path=/kb
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '627'
+      Strict-Transport-Security:
+      - max-age=60
+    body:
+      encoding: UTF-8
+      string: |-
+        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+          <soap:Body>
+            <ns2:EVOrderResponse xmlns:ns2="https://system.globalsign.com/kb/ws/v1/">
+              <Response>
+                <OrderResponseHeader>
+                  <SuccessCode>0</SuccessCode>
+                  <Errors />
+                  <Timestamp>2018-09-18T15:41:21.255+09:00</Timestamp>
+                </OrderResponseHeader>
+                <OrderID>xxxx123456780</OrderID>
+              </Response>
+            </ns2:EVOrderResponse>
+          </soap:Body>
+        </soap:Envelope>
+    http_version: 
+  recorded_at: Thu, 10 Aug 2017 19:18:00 GMT
+recorded_with: VCR 3.0.3
