@@ -44,6 +44,8 @@ module GlobalSign
         GlobalSign::DVOrder::Response
       when GlobalSign::OVOrder::Request
         GlobalSign::OVOrder::Response
+      when GlobalSign::EVOrder::Request
+        GlobalSign::EVOrder::Response
       else
         raise ArgumentError, 'invalid request argument'
       end

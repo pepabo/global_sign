@@ -1,0 +1,137 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test-gcc.globalsign.com/kb/ws/v1/ServerSSLService
+    body:
+      encoding: UTF-8
+      string: |-
+        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns2="https://system.globalsign.com/kb/ws/v1/">
+          <soap:Body>
+            <ns2:EVOrder>
+              <Request>
+                <OrderRequestHeader>
+                  <AuthToken>
+                    <UserName>[USER_NAME]</UserName>
+                    <Password>[PASSWORD]</Password>
+                  </AuthToken>
+                </OrderRequestHeader>
+                <OrderRequestParameter>
+                  <ProductCode>EV</ProductCode>
+                  <OrderKind>renewal</OrderKind>
+                  <Licenses type="integer">1</Licenses>
+                  <ValidityPeriod>
+                    <Months type="integer">12</Months>
+                  </ValidityPeriod>
+                  <CSR></CSR>
+                  <RenewalTargetOrderID>xxxx123456789</RenewalTargetOrderID>
+                </OrderRequestParameter>
+                <OrganizationInfoEV>
+                  <CreditAgency nil="true"/>
+                  <OrganizationCode>123456789</OrganizationCode>
+                  <BusinessAssumedName nil="true"/>
+                  <BusinessCategoryCode>PO</BusinessCategoryCode>
+                  <OrganizationAddress>
+                    <AddressLine1>26-1</AddressLine1>
+                    <AddressLine2 nil="true"/>
+                    <AddressLine3 nil="true"/>
+                    <City>Shibuya</City>
+                    <Region>Tokyo</Region>
+                    <PostalCode>150-0031</PostalCode>
+                    <Country>JP</Country>
+                    <Phone>090-1234-5678</Phone>
+                    <Fax nil="true"/>
+                  </OrganizationAddress>
+                </OrganizationInfoEV>
+                <RequestorInfo>
+                  <FirstName>Example</FirstName>
+                  <LastName>Requestor</LastName>
+                  <Function nil="true"/>
+                  <OrganizationName>CompanyName, Inc.</OrganizationName>
+                  <OrganizationUnit nil="true"/>
+                  <PhoneNumber>090-1234-5678</PhoneNumber>
+                  <Email>requestor@example.com</Email>
+                </RequestorInfo>
+                <ApproverInfo>
+                  <FirstName>Example</FirstName>
+                  <LastName>Approver</LastName>
+                  <Function nil="true"/>
+                  <OrganizationName>CompanyName, Inc.</OrganizationName>
+                  <OrganizationUnit nil="true"/>
+                  <PhoneNumber>090-1234-5678</PhoneNumber>
+                  <Email>approver@example.com</Email>
+                </ApproverInfo>
+                <AuthorizedSignerInfo>
+                  <FirstName>Example</FirstName>
+                  <LastName>AuthorizedSigner</LastName>
+                  <Function nil="true"/>
+                  <OrganizationName>CompanyName, Inc.</OrganizationName>
+                  <PhoneNumber>090-1234-5678</PhoneNumber>
+                  <Email>authorized_signer@example.com</Email>
+                </AuthorizedSignerInfo>
+                <JurisdictionInfo>
+                  <JurisdictionCountry>JP</JurisdictionCountry>
+                  <StateOrProvince>Tokyo</StateOrProvince>
+                  <Locality>Shibuya</Locality>
+                  <IncorporatingAgencyRegistrationNumber>1234-12-123456</IncorporatingAgencyRegistrationNumber>
+                </JurisdictionInfo>
+                <ContactInfo>
+                  <FirstName>Example</FirstName>
+                  <LastName>Taro</LastName>
+                  <Phone>090-1234-5678</Phone>
+                  <Email>taro@example.com</Email>
+                </ContactInfo>
+              </Request>
+            </ns2:EVOrder>
+          </soap:Body>
+        </soap:Envelope>
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Content-Type:
+      - text/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 10 Aug 2017 19:18:18 GMT
+      Set-Cookie:
+      - JSESSIONID=21E696DF23D5442849A720E0169A068E; Path=/kb
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Content-Length:
+      - '627'
+      Strict-Transport-Security:
+      - max-age=60
+    body:
+      encoding: UTF-8
+      string: |-
+        <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+          <soap:Body>
+            <ns2:EVOrderResponse xmlns:ns2="https://system.globalsign.com/kb/ws/v1/">
+              <Response>
+                <OrderResponseHeader>
+                  <SuccessCode>-1</SuccessCode>
+                  <Errors>
+                    <Error>
+                      <ErrorCode>-102</ErrorCode>
+                      <ErrorField>OrderRequestParameter.CSR</ErrorField>
+                      <ErrorMessage>Mandatory parameter missing. Please check that the parameters match the API specification. Please review the specific ErrorMessage returned in the XML response for parameter details and consult the XML Field definitions section of the applicable API document.</ErrorMessage>
+                    </Error>
+                  </Errors>
+                  <Timestamp>2018-09-23T23:19:59.013+09:00</Timestamp>
+                </OrderResponseHeader>
+                <OrderID xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+              </Response>
+            </ns2:EVOrderResponse>
+          </soap:Body>
+        </soap:Envelope>
+    http_version: 
+  recorded_at: Thu, 10 Aug 2017 19:18:18 GMT
+recorded_with: VCR 3.0.3
