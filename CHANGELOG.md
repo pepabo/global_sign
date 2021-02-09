@@ -1,3 +1,6 @@
+## 2.3.0
+- Support GlobalSign API: EVOrder
+
 ## 2.2.0
 
 - Added `options` optional keyword argument to `GlobalSign::Client`
