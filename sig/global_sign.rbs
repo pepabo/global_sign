@@ -1,0 +1,518 @@
+# Classes
+module GlobalSign
+  VERSION: String
+  self.@configuration: Configuration
+  self.@contract: untyped
+
+  def self.configure: -> nil
+  def self.set_contract: -> nil
+
+  class Configuration
+    attr_accessor user_name: untyped
+    attr_accessor password: untyped
+    attr_accessor endpoint: untyped
+  end
+
+  class ApproverInfo
+    attr_accessor first_name: untyped
+    attr_accessor last_name: untyped
+    attr_accessor function: nil
+    attr_accessor organization_name: untyped
+    attr_accessor organization_unit: nil
+    attr_accessor phone_number: untyped
+    attr_accessor email: untyped
+    def initialize: (first_name: untyped, last_name: untyped, organization_name: untyped, phone_number: untyped, email: untyped, ?function: nil, ?organization_unit: nil) -> void
+  end
+
+  class AuthorizedSignerInfo
+    attr_accessor first_name: untyped
+    attr_accessor last_name: untyped
+    attr_accessor function: nil
+    attr_accessor organization_name: untyped
+    attr_accessor phone_number: untyped
+    attr_accessor email: untyped
+    def initialize: (first_name: untyped, last_name: untyped, organization_name: untyped, phone_number: untyped, email: untyped, ?function: nil) -> void
+  end
+
+  class Client
+    @configuration: untyped
+    @connection: Faraday::Connection
+
+    def initialize: (?options: Hash[untyped, untyped]) -> void
+    def process: (untyped request) -> untyped
+    def find_response_class_for: (untyped request) -> untyped
+  end
+
+  class Contract
+    attr_accessor first_name: untyped
+    attr_accessor last_name: untyped
+    attr_accessor phone_number: untyped
+    attr_accessor email: untyped
+    def initialize: (first_name: untyped, last_name: untyped, phone_number: untyped, email: untyped) -> void
+  end
+
+  module CsrDecoder
+    class Request
+      @csr: untyped
+      @product_type: untyped
+
+      def initialize: (csr: untyped, product_type: untyped) -> void
+      def path: -> String
+      def action: -> String
+      def request_header: -> :QueryRequestHeader
+      def params: -> {CSR: untyped, ProductType: untyped}
+    end
+
+    class Response
+      @params: {csr_data: {common_name: String, organization: String, organization_unit: String, locality: String, state: String, country: String, email_address: String, key_length: String}, certificate_preview: {common_name: String, organization: String, organization_unit: String, locality: String, state: String, country: String, email_address: String, key_length: String}}
+      @xml: bot
+
+      def response_header: -> :QueryResponseHeader
+      def params: -> {csr_data: {common_name: String, organization: String, organization_unit: String, locality: String, state: String, country: String, email_address: String, key_length: String}, certificate_preview: {common_name: String, organization: String, organization_unit: String, locality: String, state: String, country: String, email_address: String, key_length: String}}
+
+      private
+      def detail: (untyped data) -> {common_name: String, organization: String, organization_unit: String, locality: String, state: String, country: String, email_address: String, key_length: String}
+
+      module XPath
+        CSRData: String
+        CertificatePreview: String
+      end
+    end
+  end
+
+  module DnsVerification
+    class Request
+      @product_code: untyped
+      @order_kind: untyped
+      @validity_period_months: untyped
+      @csr: untyped
+      @renewal_target_order_id: nil
+      @contract_info: untyped
+
+      def initialize: (product_code: untyped, order_kind: untyped, validity_period_months: untyped, csr: untyped, ?renewal_target_order_id: nil, ?contract_info: nil) -> void
+      def path: -> String
+      def action: -> String
+      def request_header: -> :OrderRequestHeader
+      def params: -> {OrderRequestParameter: {ProductCode: untyped, OrderKind: untyped, Licenses: Integer, ValidityPeriod: {Months: untyped}, CSR: untyped, RenewalTargetOrderID: nil}, ContactInfo: {FirstName: untyped, LastName: untyped, Phone: untyped, Email: untyped}}
+    end
+
+    class Response
+      @params: {order_id: untyped, dns_txt: untyped, verification_fqdn_list: untyped}
+      @xml: bot
+
+      def response_header: -> :OrderResponseHeader
+      def params: -> {order_id: untyped, dns_txt: untyped, verification_fqdn_list: untyped}
+
+      private
+      def verification_fqdn_list: -> untyped
+
+      module XPath
+        ORDER_ID: String
+        DNS_TXT: String
+        VERIFICATION_FQDN_LIST: String
+      end
+    end
+  end
+
+  module DnsVerificationForIssue
+    class Request
+      @order_id: untyped
+      @approver_fqdn: untyped
+
+      def initialize: (order_id: untyped, approver_fqdn: untyped) -> void
+      def path: -> String
+      def action: -> String
+      def request_header: -> :OrderRequestHeader
+      def params: -> {OrderID: untyped, ApproverFQDN: untyped}
+    end
+
+    class Response
+      @params: {certificate_info: {certificate_status: untyped, start_date: untyped, end_date: untyped, common_name: untyped, subject_name: untyped}, fulfillment: {ca_certificates: untyped, server_certificate: {x509_cert: untyped, pkcs7_cert: untyped}}}
+      @xml: bot
+
+      def response_header: -> :OrderResponseHeader
+      def params: -> {certificate_info: {certificate_status: untyped, start_date: untyped, end_date: untyped, common_name: untyped, subject_name: untyped}, fulfillment: {ca_certificates: untyped, server_certificate: {x509_cert: untyped, pkcs7_cert: untyped}}}
+
+      private
+      def certificate_info: -> untyped
+      def ca_certificates_list: -> untyped
+      def server_certificate: -> untyped
+
+      module XPath
+        Certificate_Info: String
+        CA_Certificates: String
+        Server_Certificate: String
+      end
+    end
+  end
+
+  module DVApproverList
+    class Request
+      @fqdn: untyped
+
+      def initialize: (untyped fqdn) -> void
+      def path: -> String
+      def action: -> String
+      def request_header: -> :QueryRequestHeader
+      def params: -> {FQDN: untyped}
+    end
+
+    class Response
+      @params: {order_id: untyped, approvers: untyped}
+      @xml: bot
+      @approvers: untyped
+
+      def response_header: -> :QueryResponseHeader
+      def params: -> {order_id: untyped, approvers: untyped}
+
+      private
+      def approvers_list: -> untyped
+
+      module XPath
+        ORDER_ID: String
+        APPROVERS: String
+        SEARCH_ORDER_DETAIL: String
+      end
+    end
+  end
+
+  module DVOrder
+    class Request
+      KIND_RENEWAL: String
+      @product_code: untyped
+      @order_kind: untyped
+      @validity_period_months: untyped
+      @csr: untyped
+      @approver_email: untyped
+      @order_id: untyped
+      @renewal_target_order_id: nil
+      @contract_info: untyped
+      @params: {OrderRequestParameter: {ProductCode: untyped, OrderKind: untyped, Licenses: Integer, ValidityPeriod: {Months: untyped}, CSR: untyped}, OrderID: untyped, ApproverEmail: untyped, ContactInfo: {FirstName: untyped, LastName: untyped, Phone: untyped, Email: untyped}}
+
+      def initialize: (product_code: untyped, order_kind: untyped, validity_period_months: untyped, csr: untyped, approver_email: untyped, order_id: untyped, ?renewal_target_order_id: nil, ?contract_info: nil) -> void
+      def path: -> String
+      def action: -> String
+      def request_header: -> :OrderRequestHeader
+      def params: -> {OrderRequestParameter: {ProductCode: untyped, OrderKind: untyped, Licenses: Integer, ValidityPeriod: {Months: untyped}, CSR: untyped}, OrderID: untyped, ApproverEmail: untyped, ContactInfo: {FirstName: untyped, LastName: untyped, Phone: untyped, Email: untyped}}
+
+      private
+      def order_request_parameter: -> {ProductCode: untyped, OrderKind: untyped, Licenses: Integer, ValidityPeriod: {Months: untyped}, CSR: untyped}
+      def request_params: -> {ProductCode: untyped, OrderKind: untyped, Licenses: Integer, ValidityPeriod: {Months: untyped}, CSR: untyped}
+      def contact_info: -> {FirstName: untyped, LastName: untyped, Phone: untyped, Email: untyped}
+      def renew?: -> untyped
+    end
+
+    class Response
+      @params: {order_id: untyped}
+      @xml: bot
+
+      def response_header: -> :OrderResponseHeader
+      def params: -> {order_id: untyped}
+
+      module XPath
+        ORDER_ID: String
+      end
+    end
+  end
+
+  module EVOrder
+    class Request
+      KIND_RENEWAL: String
+      @product_code: String
+      @order_kind: untyped
+      @validity_period_months: untyped
+      @csr: untyped
+      @renewal_target_order_id: nil
+      @organization_info_ev: untyped
+      @requestor_info: untyped
+      @approver_info: untyped
+      @authorized_signer_info: untyped
+      @jurisdiction_info: untyped
+      @contract_info: untyped
+      @params: {OrderRequestParameter: {ProductCode: String, OrderKind: untyped, Licenses: Integer, ValidityPeriod: {Months: untyped}, CSR: untyped}, OrganizationInfoEV: {CreditAgency: untyped, OrganizationCode: untyped, BusinessAssumedName: untyped, BusinessCategoryCode: untyped, OrganizationAddress: untyped}, RequestorInfo: {FirstName: untyped, LastName: untyped, Function: untyped, OrganizationName: untyped, OrganizationUnit: untyped, Phone: untyped, Email: untyped}, ApproverInfo: {FirstName: untyped, LastName: untyped, Function: untyped, OrganizationName: untyped, OrganizationUnit: untyped, Phone: untyped, Email: untyped}, AuthorizedSignerInfo: {FirstName: untyped, LastName: untyped, Function: untyped, OrganizationName: untyped, Phone: untyped, Email: untyped}, JurisdictionInfo: {JurisdictionCountry: untyped, StateOrProvince: untyped, Locality: untyped, IncorporatingAgencyRegistrationNumber: untyped}, ContactInfo: {FirstName: untyped, LastName: untyped, Phone: untyped, Email: untyped}}
+
+      def initialize: (order_kind: untyped, validity_period_months: untyped, csr: untyped, organization_info_ev: untyped, requestor_info: untyped, approver_info: untyped, authorized_signer_info: untyped, jurisdiction_info: untyped, ?product_code: String, ?renewal_target_order_id: nil, ?contract_info: nil) -> void
+      def path: -> String
+      def action: -> String
+      def request_header: -> :OrderRequestHeader
+      def params: -> {OrderRequestParameter: {ProductCode: String, OrderKind: untyped, Licenses: Integer, ValidityPeriod: {Months: untyped}, CSR: untyped}, OrganizationInfoEV: {CreditAgency: untyped, OrganizationCode: untyped, BusinessAssumedName: untyped, BusinessCategoryCode: untyped, OrganizationAddress: untyped}, RequestorInfo: {FirstName: untyped, LastName: untyped, Function: untyped, OrganizationName: untyped, OrganizationUnit: untyped, Phone: untyped, Email: untyped}, ApproverInfo: {FirstName: untyped, LastName: untyped, Function: untyped, OrganizationName: untyped, OrganizationUnit: untyped, Phone: untyped, Email: untyped}, AuthorizedSignerInfo: {FirstName: untyped, LastName: untyped, Function: untyped, OrganizationName: untyped, Phone: untyped, Email: untyped}, JurisdictionInfo: {JurisdictionCountry: untyped, StateOrProvince: untyped, Locality: untyped, IncorporatingAgencyRegistrationNumber: untyped}, ContactInfo: {FirstName: untyped, LastName: untyped, Phone: untyped, Email: untyped}}
+
+      private
+      def order_request_parameter: -> {ProductCode: String, OrderKind: untyped, Licenses: Integer, ValidityPeriod: {Months: untyped}, CSR: untyped}
+      def request_params: -> {ProductCode: String, OrderKind: untyped, Licenses: Integer, ValidityPeriod: {Months: untyped}, CSR: untyped}
+      def contact_info: -> {FirstName: untyped, LastName: untyped, Phone: untyped, Email: untyped}
+      def organization_info_ev: -> {CreditAgency: untyped, OrganizationCode: untyped, BusinessAssumedName: untyped, BusinessCategoryCode: untyped, OrganizationAddress: untyped}
+      def requestor_info: -> {FirstName: untyped, LastName: untyped, Function: untyped, OrganizationName: untyped, OrganizationUnit: untyped, Phone: untyped, Email: untyped}
+      def approver_info: -> {FirstName: untyped, LastName: untyped, Function: untyped, OrganizationName: untyped, OrganizationUnit: untyped, Phone: untyped, Email: untyped}
+      def authorized_signer_info: -> {FirstName: untyped, LastName: untyped, Function: untyped, OrganizationName: untyped, Phone: untyped, Email: untyped}
+      def jurisdiction_info: -> {JurisdictionCountry: untyped, StateOrProvince: untyped, Locality: untyped, IncorporatingAgencyRegistrationNumber: untyped}
+      def renew?: -> untyped
+    end
+
+    class Response
+      @params: {order_id: untyped}
+      @xml: bot
+
+      def response_header: -> :OrderResponseHeader
+      def params: -> {order_id: untyped}
+
+      module XPath
+        ORDER_ID: String
+      end
+    end
+  end
+
+  class JurisdictionInfo
+    attr_accessor jurisdiction_country: untyped
+    attr_accessor state_or_province: untyped
+    attr_accessor locality: untyped
+    attr_accessor incorporating_agency_registration_number: untyped
+    def initialize: (jurisdiction_country: untyped, state_or_province: untyped, locality: untyped, incorporating_agency_registration_number: untyped) -> void
+  end
+
+  module OrderGetterByOrderId
+    class Request
+      @order_id: untyped
+      @options: Hash[untyped, untyped]
+
+      def initialize: (order_id: untyped, ?options: Hash[untyped, untyped]) -> void
+      def path: -> String
+      def action: -> String
+      def request_header: -> :QueryRequestHeader
+      def params: -> {OrderID: untyped, OrderQueryOption: {ReturnCertificateInfo: true, ReturnFulfillment: true}}
+    end
+
+    class Response
+      @params: {order_id: untyped, order_status: untyped, modification_events: untyped, certificate_info: {certificate_status: untyped, start_date: untyped, end_date: untyped, common_name: untyped, subject_name: untyped}, fulfillment: {ca_certificates: untyped, server_certificate: {x509_cert: untyped, pkcs7_cert: untyped}}}
+      @xml: bot
+
+      def response_header: -> :OrderResponseHeader
+      def params: -> {order_id: untyped, order_status: untyped, modification_events: untyped, certificate_info: {certificate_status: untyped, start_date: untyped, end_date: untyped, common_name: untyped, subject_name: untyped}, fulfillment: {ca_certificates: untyped, server_certificate: {x509_cert: untyped, pkcs7_cert: untyped}}}?
+      def order_status_text: -> untyped
+
+      private
+      def modification_events_list: -> untyped
+      def certificate_info: -> untyped
+      def fulfillment: -> untyped
+      def ca_certificates_list: -> untyped
+      def server_certificate: -> untyped
+
+      module XPath
+        ORDER_ID: String
+        ORDER_STATUS: String
+        MODIFICATION_EVENTS: String
+        CERTIFICATE_INFO: String
+        FULFILLMENT: String
+        CA_CERTIFICATES: String
+        SERVER_CERTIFICATE: String
+      end
+    end
+  end
+
+  class OrderStatus
+    STATUS_MAPPING: Hash[String, String]
+  end
+
+  class OrganizationAddress
+    attr_accessor address_line1: untyped
+    attr_accessor address_line2: nil
+    attr_accessor address_line3: nil
+    attr_accessor city: untyped
+    attr_accessor region: untyped
+    attr_accessor postal_code: untyped
+    attr_accessor country: untyped
+    attr_accessor phone: untyped
+    attr_accessor fax: nil
+    def initialize: (address_line1: untyped, city: untyped, region: untyped, postal_code: untyped, country: untyped, phone: untyped, ?address_line2: nil, ?address_line3: nil, ?fax: nil) -> void
+  end
+
+  class OrganizationInfo
+    attr_accessor organization_name: untyped
+    attr_accessor credit_agency: nil
+    attr_accessor organization_code: nil
+    attr_accessor organization_address: {AddressLine1: untyped, AddressLine2: untyped, AddressLine3: untyped, City: untyped, Region: untyped, PostalCode: untyped, Country: untyped, Phone: untyped, Fax: untyped}
+    def initialize: (organization_name: untyped, organization_address: untyped, ?credit_agency: nil, ?organization_code: nil) -> void
+    def organization_address_params: (untyped organization_address) -> {AddressLine1: untyped, AddressLine2: untyped, AddressLine3: untyped, City: untyped, Region: untyped, PostalCode: untyped, Country: untyped, Phone: untyped, Fax: untyped}
+
+    module CreditAgency
+      DUNS: Integer
+      TDB: Integer
+    end
+  end
+
+  class OrganizationInfoEV
+    attr_accessor credit_agency: nil
+    attr_accessor organization_code: nil
+    attr_accessor business_assumed_name: nil
+    attr_accessor business_category_code: untyped
+    attr_accessor organization_address: {AddressLine1: untyped, AddressLine2: untyped, AddressLine3: untyped, City: untyped, Region: untyped, PostalCode: untyped, Country: untyped, Phone: untyped, Fax: untyped}
+    def initialize: (business_category_code: untyped, organization_address: untyped, ?credit_agency: nil, ?organization_code: nil, ?business_assumed_name: nil) -> void
+    def organization_address_params: (untyped organization_address) -> {AddressLine1: untyped, AddressLine2: untyped, AddressLine3: untyped, City: untyped, Region: untyped, PostalCode: untyped, Country: untyped, Phone: untyped, Fax: untyped}
+
+    module BusinessCategoryCode
+      PRIVATE_ORGANIZATION: String
+      GOVERNMENT_ENTITY: String
+      BUSINESS_ENTITY: String
+    end
+  end
+
+  module OVOrder
+    class Request
+      KIND_RENEWAL: String
+      @product_code: String
+      @order_kind: untyped
+      @validity_period_months: untyped
+      @csr: untyped
+      @renewal_target_order_id: nil
+      @contract_info: untyped
+      @organization_info: untyped
+      @params: {OrderRequestParameter: {ProductCode: String, OrderKind: untyped, Licenses: Integer, ValidityPeriod: {Months: untyped}, CSR: untyped}, ContactInfo: {FirstName: untyped, LastName: untyped, Phone: untyped, Email: untyped}, OrganizationInfo: {OrganizationName: untyped, CreditAgency: untyped, OrganizationCode: untyped, OrganizationAddress: untyped}}
+
+      def initialize: (order_kind: untyped, validity_period_months: untyped, csr: untyped, organization_info: untyped, ?product_code: String, ?renewal_target_order_id: nil, ?contract_info: nil) -> void
+      def path: -> String
+      def action: -> String
+      def request_header: -> :OrderRequestHeader
+      def params: -> {OrderRequestParameter: {ProductCode: String, OrderKind: untyped, Licenses: Integer, ValidityPeriod: {Months: untyped}, CSR: untyped}, ContactInfo: {FirstName: untyped, LastName: untyped, Phone: untyped, Email: untyped}, OrganizationInfo: {OrganizationName: untyped, CreditAgency: untyped, OrganizationCode: untyped, OrganizationAddress: untyped}}
+
+      private
+      def order_request_parameter: -> {ProductCode: String, OrderKind: untyped, Licenses: Integer, ValidityPeriod: {Months: untyped}, CSR: untyped}
+      def request_params: -> {ProductCode: String, OrderKind: untyped, Licenses: Integer, ValidityPeriod: {Months: untyped}, CSR: untyped}
+      def contact_info: -> {FirstName: untyped, LastName: untyped, Phone: untyped, Email: untyped}
+      def organization_info: -> {OrganizationName: untyped, CreditAgency: untyped, OrganizationCode: untyped, OrganizationAddress: untyped}
+      def renew?: -> untyped
+    end
+
+    class Response
+      @params: {order_id: untyped}
+      @xml: bot
+
+      def response_header: -> :OrderResponseHeader
+      def params: -> {order_id: untyped}
+
+      module XPath
+        ORDER_ID: String
+      end
+    end
+  end
+
+  class Request
+    def to_xml: -> untyped
+    def auth_token_params: -> Hash[Symbol, {AuthToken: {UserName: untyped, Password: untyped}}]
+    def auth_token_hash: -> {AuthToken: {UserName: untyped, Password: untyped}}
+  end
+
+  class RequestXmlBuilder
+    def self.build_xml: (action: untyped, params: untyped) -> untyped
+    def self.xml_envelope: (untyped action) -> Nokogiri::XML::Document
+    def self.xml_body: (untyped params) -> Nokogiri::XML::Document
+
+    module XmlNamespace
+      BODY: String
+      ACTION: String
+    end
+  end
+
+  class RequestorInfo
+    attr_accessor first_name: untyped
+    attr_accessor last_name: untyped
+    attr_accessor function: nil
+    attr_accessor organization_name: untyped
+    attr_accessor organization_unit: nil
+    attr_accessor phone_number: untyped
+    attr_accessor email: untyped
+    def initialize: (first_name: untyped, last_name: untyped, organization_name: untyped, phone_number: untyped, email: untyped, ?function: nil, ?organization_unit: nil) -> void
+  end
+
+  class Response
+    SUCCESS_CODE: String
+    WARNING_CODE: String
+    @xml: Nokogiri::XML::Document
+
+    def initialize: (untyped body) -> void
+    def xpath_result: -> String
+    def xpath_errors: -> String
+    def success?: -> bool
+    def warning?: -> bool
+    def error?: -> bool
+    def error_code: -> untyped
+    def error_field: -> untyped
+    def error_message: -> untyped
+
+    private
+    def errors: -> Nokogiri::XML::NodeSet
+  end
+
+  module UrlVerification
+    class Request < Request
+      @product_code: untyped
+      @order_kind: untyped
+      @validity_period_months: untyped
+      @csr: untyped
+      @renewal_target_order_id: nil
+      @contract_info: untyped
+
+      def initialize: (product_code: untyped, order_kind: untyped, validity_period_months: untyped, csr: untyped, ?renewal_target_order_id: nil, ?contract_info: nil) -> void
+      def path: -> String
+      def action: -> String
+      def request_header: -> :OrderRequestHeader
+      def params: -> {OrderRequestParameter: {ProductCode: untyped, OrderKind: untyped, Licenses: Integer, ValidityPeriod: {Months: untyped}, CSR: untyped, RenewalTargetOrderID: nil}, ContactInfo: {FirstName: untyped, LastName: untyped, Phone: untyped, Email: untyped}}
+    end
+
+    class Response < Response
+      @params: {order_id: untyped, meta_tag: untyped, verification_url_list: untyped}
+      @xml: bot
+
+      def response_header: -> :OrderResponseHeader
+      def params: -> {order_id: untyped, meta_tag: untyped, verification_url_list: untyped}
+
+      private
+      def verification_url_list: -> untyped
+
+      module XPath
+        ORDER_ID: String
+        META_TAG: String
+        VERIFICATION_URL_LIST: String
+      end
+    end
+  end
+
+  module UrlVerificationForIssue
+    class Request < Request
+      @order_id: untyped
+      @approver_url: untyped
+
+      def initialize: (order_id: untyped, approver_url: untyped) -> void
+      def path: -> String
+      def action: -> String
+      def request_header: -> :OrderRequestHeader
+      def params: -> {OrderID: untyped, ApproverURL: untyped}
+    end
+
+    class Response < Response
+      @params: {certificate_info: {certificate_status: untyped, start_date: untyped, end_date: untyped, common_name: untyped, subject_name: untyped}, fulfillment: {ca_certificates: untyped, server_certificate: {x509_cert: untyped, pkcs7_cert: untyped}}}
+      @xml: bot
+
+      def response_header: -> :OrderResponseHeader
+      def params: -> {certificate_info: {certificate_status: untyped, start_date: untyped, end_date: untyped, common_name: untyped, subject_name: untyped}, fulfillment: {ca_certificates: untyped, server_certificate: {x509_cert: untyped, pkcs7_cert: untyped}}}
+
+      private
+      def certificate_info: -> untyped
+      def ca_certificates_list: -> untyped
+      def server_certificate: -> untyped
+
+      module XPath
+        Certificate_Info: String
+        CA_Certificates: String
+        Server_Certificate: String
+      end
+    end
+  end
+end
+
+module Nokogiri
+  module XML
+    class Builder
+      @doc: Document
+    end
+  end
+end
