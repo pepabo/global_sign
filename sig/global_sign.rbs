@@ -35,12 +35,12 @@ module GlobalSign
   end
 
   class Client
-    @configuration: untyped
+    @configuration: Configuratino
     @connection: Faraday::Connection
 
     def initialize: (?options: Hash[untyped, untyped]) -> void
-    def process: (untyped request) -> untyped
-    def find_response_class_for: (untyped request) -> untyped
+    def process: (GlobalSign::Reqeust request) -> GlobalSign::Response
+    def find_response_class_for: (GlobalSign::Request request) -> GlobalSign::Response
   end
 
   class Contract
