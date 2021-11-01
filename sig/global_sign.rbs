@@ -508,11 +508,3 @@ module GlobalSign
     end
   end
 end
-
-module Nokogiri
-  module XML
-    class Builder
-      @doc: Document
-    end
-  end
-end
