@@ -44,11 +44,11 @@ module GlobalSign
   end
 
   class Contract
-    attr_accessor first_name: untyped
-    attr_accessor last_name: untyped
-    attr_accessor phone_number: untyped
-    attr_accessor email: untyped
-    def initialize: (first_name: untyped, last_name: untyped, phone_number: untyped, email: untyped) -> void
+    attr_accessor first_name: String
+    attr_accessor last_name: String
+    attr_accessor phone_number: String
+    attr_accessor email: String
+    def initialize: (first_name: String, last_name: String, phone_number: String, email: String) -> void
   end
 
   module CsrDecoder
