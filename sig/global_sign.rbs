@@ -2,7 +2,7 @@
 module GlobalSign
   VERSION: String
   self.@configuration: Configuration
-  self.@contract: untyped
+  self.@contract: Contract
 
   def self.configure: -> nil
   def self.set_contract: -> nil
