@@ -8,9 +8,9 @@ module GlobalSign
   def self.set_contract: -> nil
 
   class Configuration
-    attr_accessor user_name: untyped
-    attr_accessor password: untyped
-    attr_accessor endpoint: untyped
+    attr_accessor user_name: String
+    attr_accessor password: String
+    attr_accessor endpoint: String
   end
 
   class ApproverInfo
