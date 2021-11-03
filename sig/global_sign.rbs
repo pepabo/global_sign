@@ -59,6 +59,14 @@ module GlobalSign
     def initialize: (first_name: String, last_name: String, organization_name: String, phone_number: String, email: String, ?function: untyped) -> void
   end
 
+  class JurisdictionInfo
+    attr_accessor jurisdiction_country: String
+    attr_accessor state_or_province: String
+    attr_accessor locality: String
+    attr_accessor incorporating_agency_registration_number: String
+    def initialize: (jurisdiction_country: String, state_or_province: String, locality: String, incorporating_agency_registration_number: String) -> void
+  end
+
   class Client
     @configuration: Configuratino
     @connection: Faraday::Connection
@@ -285,14 +293,6 @@ module GlobalSign
         ORDER_ID: String
       end
     end
-  end
-
-  class JurisdictionInfo
-    attr_accessor jurisdiction_country: untyped
-    attr_accessor state_or_province: untyped
-    attr_accessor locality: untyped
-    attr_accessor incorporating_agency_registration_number: untyped
-    def initialize: (jurisdiction_country: untyped, state_or_province: untyped, locality: untyped, incorporating_agency_registration_number: untyped) -> void
   end
 
   module OrderGetterByOrderId
