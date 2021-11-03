@@ -67,6 +67,17 @@ module GlobalSign
     def initialize: (jurisdiction_country: String, state_or_province: String, locality: String, incorporating_agency_registration_number: String) -> void
   end
 
+  class RequestorInfo
+    attr_accessor first_name: String
+    attr_accessor last_name: String
+    attr_accessor function: untyped
+    attr_accessor organization_name: String
+    attr_accessor organization_unit: untyped
+    attr_accessor phone_number: String
+    attr_accessor email: String
+    def initialize: (first_name: String, last_name: String, organization_name: String, phone_number: String, email: String, ?function: untyped, ?organization_unit: untyped) -> void
+  end
+
   class Client
     @configuration: Configuratino
     @connection: Faraday::Connection
@@ -429,17 +440,6 @@ module GlobalSign
       BODY: String
       ACTION: String
     end
-  end
-
-  class RequestorInfo
-    attr_accessor first_name: untyped
-    attr_accessor last_name: untyped
-    attr_accessor function: nil
-    attr_accessor organization_name: untyped
-    attr_accessor organization_unit: nil
-    attr_accessor phone_number: untyped
-    attr_accessor email: untyped
-    def initialize: (first_name: untyped, last_name: untyped, organization_name: untyped, phone_number: untyped, email: untyped, ?function: nil, ?organization_unit: nil) -> void
   end
 
   module UrlVerification
