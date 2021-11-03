@@ -13,6 +13,31 @@ module GlobalSign
     attr_accessor endpoint: String
   end
 
+  class Request
+    type auto_token = { AuthToken: { UsernName: String, Password: String } }
+    def to_xml: -> String
+    def auth_token_params: -> Hash[Symbol, auth_token]
+    def auth_token_hash: -> auth_token
+  end
+
+  class Response
+    SUCCESS_CODE: '0'
+    WARNING_CODE: '1'
+
+    def initialize: (String body) -> void
+    def xpath_result: -> String
+    def xpath_errors: -> String
+    def success?: -> bool
+    def warning?: -> bool
+    def error?: -> bool
+    def error_code: -> String
+    def error_field: -> String
+    def error_message: -> String
+
+    private
+    def errors: -> Nokogiri::XML::NodeSet
+  end
+
   class ApproverInfo
     attr_accessor first_name: String
     attr_accessor last_name: String
@@ -395,12 +420,6 @@ module GlobalSign
     end
   end
 
-  class Request
-    def to_xml: -> untyped
-    def auth_token_params: -> Hash[Symbol, {AuthToken: {UserName: untyped, Password: untyped}}]
-    def auth_token_hash: -> {AuthToken: {UserName: untyped, Password: untyped}}
-  end
-
   class RequestXmlBuilder
     def self.build_xml: (action: untyped, params: untyped) -> untyped
     def self.xml_envelope: (untyped action) -> Nokogiri::XML::Document
@@ -421,25 +440,6 @@ module GlobalSign
     attr_accessor phone_number: untyped
     attr_accessor email: untyped
     def initialize: (first_name: untyped, last_name: untyped, organization_name: untyped, phone_number: untyped, email: untyped, ?function: nil, ?organization_unit: nil) -> void
-  end
-
-  class Response
-    SUCCESS_CODE: String
-    WARNING_CODE: String
-    @xml: Nokogiri::XML::Document
-
-    def initialize: (untyped body) -> void
-    def xpath_result: -> String
-    def xpath_errors: -> String
-    def success?: -> bool
-    def warning?: -> bool
-    def error?: -> bool
-    def error_code: -> untyped
-    def error_field: -> untyped
-    def error_message: -> untyped
-
-    private
-    def errors: -> Nokogiri::XML::NodeSet
   end
 
   module UrlVerification
