@@ -78,6 +78,17 @@ module GlobalSign
     def initialize: (first_name: String, last_name: String, organization_name: String, phone_number: String, email: String, ?function: untyped, ?organization_unit: untyped) -> void
   end
 
+  class RequestXmlBuilder
+    def self.build_xml: (action: String, params: Hash[Symbol, String]) ->  String
+    def self.xml_envelope: (String action) -> Nokogiri::XML::Document
+    def self.xml_body: (Hash[Symbol, String] params) -> Nokogiri::XML::Document
+
+    module XmlNamespace
+      BODY: String
+      ACTION: String
+    end
+  end
+
   class Client
     @configuration: Configuratino
     @connection: Faraday::Connection
@@ -428,17 +439,6 @@ module GlobalSign
       module XPath
         ORDER_ID: String
       end
-    end
-  end
-
-  class RequestXmlBuilder
-    def self.build_xml: (action: untyped, params: untyped) -> untyped
-    def self.xml_envelope: (untyped action) -> Nokogiri::XML::Document
-    def self.xml_body: (untyped params) -> Nokogiri::XML::Document
-
-    module XmlNamespace
-      BODY: String
-      ACTION: String
     end
   end
 
