@@ -1,4 +1,5 @@
-require 'active_support/core_ext/hash/conversions'
+require 'active_support'
+require 'active_support/core_ext'
 
 require 'global_sign/version'
 require 'global_sign/client'
